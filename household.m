@@ -1,3 +1,4 @@
+clear; close all; clc;
 z=1;
 s=10;
 gamma=1.5;

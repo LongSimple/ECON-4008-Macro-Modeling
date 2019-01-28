@@ -1,4 +1,4 @@
-nuke;
+clear; close all; clc;
 alpha=.66;
 gamma=1.5;
 beta=.96;
