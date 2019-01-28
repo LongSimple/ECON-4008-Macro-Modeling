@@ -1,15 +1,13 @@
 clear; close all; clc;
-alpha=.66;
-gamma=1.5;
-beta=.96;
+alpha=.66; %this is working now
 rho=.909;
 sigmasquaredsube=0.014;
 errorterm=0;
-n=5;
 z=100;
-w=20;
+w=30;
 productivityshock = @(x)x^rho+(exp(1)^(errorterm));
-zprime=productivityshock(z);
-Y=z*(n^alpha);
-n2=100;
-d=(z*(n2^alpha))-(w*n2);
+dividendfunction = @(x)(w*x)-(z*(x^alpha)); %x= number of workers
+zprime=productivityshock(z);%calculate z in next state
+n3= fminbnd(dividendfunction,1,100000000);
+div2 = (z*(n3^alpha))-(w*n3);
+Y=z*(n3^alpha);
