@@ -1,0 +1,15 @@
+nuke;
+alpha=.66;
+gamma=1.5;
+beta=.96;
+rho=.909;
+sigmasquaredsube=0.014;
+errorterm=0;
+n=5;
+z=100;
+w=20;
+productivityshock = @(x)x^rho+(exp(1)^(errorterm));
+zprime=productivityshock(z);
+Y=z*(n^alpha);
+n2=100;
+d=(z*(n2^alpha))-(w*n2);
