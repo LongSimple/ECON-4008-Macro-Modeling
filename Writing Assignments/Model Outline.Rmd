@@ -1,0 +1,117 @@
+---
+title: "Model Outline"
+author: "Jenna Christensen and Kai Jensen"
+date: "February 26, 2018"
+output:
+  pdf_document: default
+  word_document: default
+---
+
+**Lucas Model**
+
+\bigskip
+
+The firm's output with decreasing returns to scale: $y = F(n) = zn^\alpha$
+
+The aggregate total factor of productivity $z$ is found with a Markov chain rule following: 
+
+$z_i \in Z = \{\ z_1, z_2, ... z_{N_z} \}$ 
+
+$log(z) = \rho(z) + \epsilon$
+
+\smallskip
+
+The probability of moving from state $z$ to a particular state in $Z$ is: 
+
+$\pi_{ij} = Pr\{z' = z_j | z = z_i\}$
+
+\smallskip
+
+The firm's problem: $d(z) = max_n \{zn^\alpha - wn\}$ where $d(z)$ represents the dividends. 
+
+\smallskip
+
+The household is defined by:
+
+\bigskip
+
+$V(s, z_i) = max \{u(c) + \beta \sum_{j=1}^{N_z} \pi_{ij} V(s',z_j)\}$
+
+subject to
+
+$c + p(z_i)s' = (d(z_i) + p(z_i))s + w(z_i)$
+
+\smallskip
+
+We define the utility function as: $u(c) = \frac{c^{1 - \gamma}}{1 - \gamma}$
+
+\pagebreak
+
+**Lucas Model During a Lifecycle**
+
+\bigskip
+
+The Value Function: 
+
+$V_T = max \{u(c,l)\}$ 
+
+subject to 
+
+$c = s + w(z_i)n$
+$n + l = 1$ 
+
+The Value Function During the Last Age: (we will start with this and then work backwards)
+
+$V_t(s,z_i) = max \{u(c,l) + \beta \sum_{j=1}^{N_z} \pi_{ij} V_{t+1}(s',z_j)\}$
+
+subject to
+
+$c + s' = (1+r)s + w(z_i)n$ 
+
+$n+l = 1$
+
+\pagebreak
+
+*General Equilibrium* is defined as a pair of functions: the price function and the value function. 
+All output must be consumed, all asset shares must be held, and all asset prices solve the dynamic problem. 
+\bigskip 
+
+The value function is solves so that: $s' = g(s,z_i)$
+
+\smallskip
+
+Prices satisfy the folloiwng: 
+
+$w(z_i) = az_i$
+
+$d(z_i) = (1 - a)z_i$
+
+\smallskip
+
+The decision rule satisfies the following: 
+
+$g(1, z_i) = 1$
+
+\bigskip
+
+Key Variables: 
+\smallskip 
+
+$\alpha$: Labor share of output 
+\smallskip
+
+$\gamma$: Risk aversion parameter
+\smallskip
+
+$\beta$: Discounting factor
+\smallskip
+
+$\rho$: persistence of aggregate shock
+\smallskip
+
+$\omega^2_e$: variance of the iid part of the shock 
+\smallskip
+
+
+We will gather price data for T-Bills from the U.S. Treasury's website. Historical price data for Bitcoin can easily be gathered from Yahoo Finance and similar sites. We will compute daily returns as $R_{it} = \frac{ln(P_t)}{ln(P_{t-1})}$. Thereafter, we will compute the equity premium as $\frac{ln(P_{it})}{ln(P_{i,t-1})} - \frac{ln(P_jt)}{ln(P_{j,t-1})}$. 
+
