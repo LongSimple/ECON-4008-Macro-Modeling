@@ -1,29 +1,40 @@
 ---
-title: "An Analysis of Risky Assets with an Investment and Savings Constraint"
+title: "An Analysis of Bitcoin with a Consumption and Savings Constraint"
 author: | 
   | Jenna Christensen and Kai Jensen
-  | ECON 4008-01: Macro Modeling
+  | Department of Economics
   | St. Lawrence University
   | 23 Romoda Drive 
   | Canton, New York 13617
-
 output:
+  word_document: default
   pdf_document: default
-keywords: Cryptocurrency, Equity Premium, Finance
+keywords: Equity Premium, Technology, Cryptocurrency
 abstract: |-
-  This empirical work seeks to analyze the shock process of Bitcoin as well as the shock process of relatively risk free U.S. Treasury Bills (i.e. to answer the following question: What is the shock process of Bitcoin and the shock process of a relatively risk free U.S. Treasury Bill?). Furthermore, this study seeks to examine the risk aversion parameter necessary to generate the level of equity return observed in the historical price data of Bitcoin and U.S. Treasury Bills (i.e. to answer the following question: What is the risk aversion parameter necessary to generate the level of equity return observed in historical price data of Bitcoin and U.S. Treasury Bills?). Traditionally, studies that replicate the equity premium puzzle with a Lucas Asset Pricing Model examine the excess returns of a risky security or index relative to those of risk free assets or treasury bonds. Until 2016, cryptocurrencies were largely unacknowledged by academics. Although the volatile behavior of cryptocurrency is now at the forefront of many financial economic works, the risk premia necessary to hold cryptocurrencies are scantly studied.   \par
+  Traditionally, studies that replicate the equity premium
+  puzzle with a Lucas Asset Pricing Model examine the excess returns of a risky security
+  or index relative to those of risk free assets or treasury bonds. Until 2016, cryptocurrencies
+  were largely unacknowledged by academics. Although the volatile behavior of cryptocurrency
+  is now at the forefront of many financial economic works, the risk premia necessary
+  to hold cryptocurrencies are scantly studied.This empirical work seeks to analyze the shock process   of Bitcoin as wellas the shock process of relatively risk free U.S. Treasury Bills (i.e. to answer
+  of a relatively risk free U.S. Treasury Bill?). Furthermore, this study seeks to
+  examine the risk aversion parameter necessary to generate the level of equity return
+  observed in the historical price data of Bitcoin and U.S. Treasury Bills (i.e. to
+  generate the level of equity return observed in historical price data of Bitcoin and U.S. Treasury    Bills?).    \par
+  \textbf{JEL codes:} B26 (Financial Economics), G14 (Information and Market Efficiency, Event Studies, and Insider Trading), L63 (Microelectronics, Computers, and Communications Equipment)  \par
+  \textbf{Keywords:} Equity Premium; Technology; Cryptocurrency
 ---
 
 \pagebreak 
-
 
 There are two financial assets in which the representative agent can invest: a risk free Treasury Bill, $b_t$, and cryptocurrency, $s_t$. By borrowing or saving with the asset $b_t$, the agent subsequently earns the risk free rate or return, $R_f$. We suppose that the borrowing rate $R_b$ exceed the savings rate so that $R_b = R_f + \omega$, and we let debt be non-defaultable with a borrowing limit $b > 0$. 
 
 Alternatively, the returns of cryptocurrency, $R_s$, are calculated at time $t$ by $R_{t} = ln(P_t/P_{t-1})$ with \(P_t\) equal to the price of the Bitcoin price on day \(t\). Bitcoin earns a stochastic return $R_{s, t+1} - R_f = \mu + \eta_{t+1}$ during period $t + 1$ where $\eta_{t+1}$ is assumed to be the innovation to excess returns distributed as $N(0, \sigma_\eta^2)$. The stochastic return of Bitcoin follows a Markov Chain formally described as $z_i \in  Z = \{z_1, z_2, z_3, ... z_{N_z}\}$. The probability of landing in state $z_j \in z$  is defined as $\pi_{i,j} = P\{z' = z_j | z = z_i\}$ Furthermore, the persistence of aggregate shock, $\rho$, follows $log(z) = \rho log(z) + \epsilon$ where the distribution of $\epsilon$ is defined as $N(0, \sigma_\epsilon^2)$. 
 
-Given financial investments $b_{t+1}$ and $s_{t+1}$, we compute financial wealth during period $t + 1$ as $x_{t+1} = R_jb_{t+1} + R_{s, t + 1} s_{t+1}$. The representative agent must choose to save with risk free Treasury Bonds or to invest in Bitcoin. Provided that the representative agent has a utility function following $u(c) = \frac{c^{1-\gamma}}{1 - \gamma}$ with consumption, $c$, and a risk aversion parameter of $\gamma$, a partial equilibrium in the infinite horizon model is met when the following value function in time $t$ is maximized. 
+Given financial investments $b_{t+1}$ and $s_{t+1}$, we compute financial wealth during period $t + 1$ as $x_{t+1} = R_jb_{t+1} + R_{s, t + 1} s_{t+1}$. The representative agent must choose to save with risk free Treasury Bonds or to invest in Bitcoin. Provided that the representative agent has a utility function following $u(c) = \frac{c^{1-\gamma}}{1 - \gamma}$ with consumption, $c$, and a risk aversion parameter of $\gamma$, a partial equilibrium in the infinite horizon model is met when the following value function in time $t$ is maximized. To solve for a partial equilibrium, we maximize the value function during time $t$ by choosing how much to invest in Bitcoin and Treasury Bills during period $t+1$.  
 
-$$V^R (t, b, s) = max_{b',s'} \{\frac{c^{1-\gamma}}{1 - \gamma} + \beta V^R(t+1, b', s') \}\ $$
+
+$$V (b, s) = max_{b',s'} \{\frac{c^{1-\gamma}}{1 - \gamma} + E(\beta V(b', s')) \}\ $$
 
 subject to
 
@@ -31,14 +42,3 @@ $$c + b' + s' = R_jb + R_ss$$
 $$b' \geq b$$
 $$s' > 0$$
 
-To solve for a partial equilibrium, we maximize the value function during time $t$ by choosing how much to invest in Bitcoin and Treasury Bills during period $t+1$.  
-
-*Do I need to include information about data (sum stats, origin, etc)*
-
-*Do we need a savings variable in the function above- we count the T-Bill as "saving"*
-
-*Verify that this is an infinite horizon model*
-
-*Verify that we solve this by maximizing value in $t$ by choosing amounts to borrow/invest in time $t+1$*
-
-*Check the process for solving for a partial equilibrium- what requirements need to be met?* 
