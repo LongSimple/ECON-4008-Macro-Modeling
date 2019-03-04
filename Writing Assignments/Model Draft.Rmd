@@ -17,11 +17,11 @@ abstract: |-
 \pagebreak 
 
 
-There are two financial assets in which the representative agent can invest: a risk free Treasury Bill, $b_t$, and cryptocurrency, $s_t$. The agent chooses to borrow or save with the asset $b_t$. Subsequently, he earns the risk free rate or return, $R_f$. We suppose that the borrowing rate $R_b$ exceed the savings rate so that $R_b = R_f + \omega$, and we let debt be non-defaultable with a borrowing limit $b > 0$. 
+There are two financial assets in which the representative agent can invest: a risk free Treasury Bill, $b_t$, and cryptocurrency, $s_t$. By borrowing or saving with the asset $b_t$, the agent subsequently earns the risk free rate or return, $R_f$. We suppose that the borrowing rate $R_b$ exceed the savings rate so that $R_b = R_f + \omega$, and we let debt be non-defaultable with a borrowing limit $b > 0$. 
 
-Alternatively, the returns of cryptocurrency, $R_s$, are calculated at time $t$ by $R_{t} = ln(P_t/P_{t-1})$ with \(P_t\) equal to the price of the Bitcoin price on day \(t\). Bitcoin earns a stochastic return $R_{s, t+1} - R_f = \mu + \eta_{t+1}$ during period $t + 1$ where $\eta_{t+1}$ is assumed to be the innovation to excess returns distributed as $N(0, \sigma_\eta^2)$. The stochastic return of Bitcoin follows a Markov Chain formally described as $z_i \in  Z = \{z_1, z_2, z_3, ... z_{N_z}\}$. We define the probability of landing in state $z_j \in z$ as $\pi_{i,j} = P\{z' = z_j | z = z_i\}$ Furthermore, the persistence of aggregate shock, $\rho$, follows $log(z) = \rho log(z) + \epsilon$ where the distribution of $\epsilon$ is defined as $N(0, \sigma_\epsilon^2)$. 
+Alternatively, the returns of cryptocurrency, $R_s$, are calculated at time $t$ by $R_{t} = ln(P_t/P_{t-1})$ with \(P_t\) equal to the price of the Bitcoin price on day \(t\). Bitcoin earns a stochastic return $R_{s, t+1} - R_f = \mu + \eta_{t+1}$ during period $t + 1$ where $\eta_{t+1}$ is assumed to be the innovation to excess returns distributed as $N(0, \sigma_\eta^2)$. The stochastic return of Bitcoin follows a Markov Chain formally described as $z_i \in  Z = \{z_1, z_2, z_3, ... z_{N_z}\}$. The probability of landing in state $z_j \in z$  is defined as $\pi_{i,j} = P\{z' = z_j | z = z_i\}$ Furthermore, the persistence of aggregate shock, $\rho$, follows $log(z) = \rho log(z) + \epsilon$ where the distribution of $\epsilon$ is defined as $N(0, \sigma_\epsilon^2)$. 
 
-Given financial investments during time $t$, $b_{t+1}$, and $s_{t+1}$, we compute financial wealth during period $t + 1$ as $x_{t+1} = R_jb_{t+1} + R_{s, t + 1} s_{t+1}$. The representative agent must choose to invest in risk free Treasury Bonds, invest in Bitcoin, or save their earnings. Provided that the representative agent has a utility function following $u(c) = \frac{c^{1-\gamma}}{1 - \gamma}$ with consumption, $c$, and a risk aversion parameter of $\gamma$, a partial equilibrium in the infinite horizon model is met when the following value function in time $t$ is maximized. 
+Given financial investments $b_{t+1}$ and $s_{t+1}$, we compute financial wealth during period $t + 1$ as $x_{t+1} = R_jb_{t+1} + R_{s, t + 1} s_{t+1}$. The representative agent must choose to save with risk free Treasury Bonds or to invest in Bitcoin. Provided that the representative agent has a utility function following $u(c) = \frac{c^{1-\gamma}}{1 - \gamma}$ with consumption, $c$, and a risk aversion parameter of $\gamma$, a partial equilibrium in the infinite horizon model is met when the following value function in time $t$ is maximized. 
 
 $$V^R (t, b, s) = max_{b',s'} \{\frac{c^{1-\gamma}}{1 - \gamma} + \beta V^R(t+1, b', s') \}\ $$
 
@@ -31,4 +31,14 @@ $$c + b' + s' = R_jb + R_ss$$
 $$b' \geq b$$
 $$s' > 0$$
 
-To solve for a partial equilibrium... 
+To solve for a partial equilibrium, we maximize the value function during time $t$ by choosing how much to invest in Bitcoin and Treasury Bills during period $t+1$.  
+
+*Do I need to include information about data (sum stats, origin, etc)*
+
+*Do we need a savings variable in the function above- we count the T-Bill as "saving"*
+
+*Verify that this is an infinite horizon model*
+
+*Verify that we solve this by maximizing value in $t$ by choosing amounts to borrow/invest in time $t+1$*
+
+*Check the process for solving for a partial equilibrium- what requirements need to be met?* 
