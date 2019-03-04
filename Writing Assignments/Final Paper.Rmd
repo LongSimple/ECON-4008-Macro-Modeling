@@ -43,6 +43,26 @@ Much of the financial literature contains ambiguous results concerning the behav
 
 Although cryptocurrencies may serve as useful portfolio diversifiers their returns do not behave similarly to standard asset classes.9 Liu and Tsyvinski (2018) investigate whether the cryptocurrency market behaves similarly to the stock market. They do so by determining whether or not the returns of cryptocurrency are compensated by risk factors derived from the stock market and analyzing CAPM alphas, CAPM betas, and Eugene Fama and Kenneth French’s five risk factors. Thereafter, they study the exposure of cryptocurrency returns to the Australian Dollar, Canadian Dollar, Euro, Singaporean Dollar, and UK Pound. Although major national currencies strongly comove with one another, the exposures of all cryptocurrencies to major currencies are not statistically significant. Hence, Liu and Tsyvinski (2018) fail to reject the null hypothesis that cryptocurrency serves as another medium of exchange. They also examine the exposure of cryptocurrency returns to precious metal commodities and test whether or not cryptocurrencies serve as a store of value. Again, they find that the exposure of cryptocurrencies is insignificant. Traditional currencies fulfill three objectives: a unit of account, a store of value, and a medium of exchange. However, the implementation of empirical asset pricing models and the analysis of co-movements among Bitcoin, Ripple, Ethereum, stocks, currencies, commodities, macroeconomic factors, and cryptocurrency market specific factors show that cryptocurrencies can be assessed using simple financial tools, but they behave in a radically different manner than traditional assets. Liu and Tsyvinski (2018) lastly conclude that only cryptocurrency market specific factors including momentum and investor attention consistently explain market returns.
 
-#Model 
+#Financial Model 
+
+There are two financial assets in which the representative agent can invest: a risk free Treasury Bill, $b_t$, and cryptocurrency, $s_t$. By borrowing or saving with the asset $b_t$, the agent subsequently earns the risk free rate or return, $R_f$. We suppose that the borrowing rate $R_b$ exceed the savings rate so that $R_b = R_f + \omega$, and we let debt be non-defaultable with a borrowing limit $b > 0$. 
+
+Alternatively, the returns of cryptocurrency, $R_s$, are calculated at time $t$ by $R_{t} = ln(P_t/P_{t-1})$ with \(P_t\) equal to the price of the Bitcoin price on day \(t\). Bitcoin earns a stochastic return $R_{s, t+1} - R_f = \mu + \eta_{t+1}$ during period $t + 1$ where $\eta_{t+1}$ is assumed to be the innovation to excess returns distributed as $N(0, \sigma_\eta^2)$. The stochastic return of Bitcoin follows a Markov Chain formally described as $z_i \in  Z = \{z_1, z_2, z_3, ... z_{N_z}\}$. The probability of landing in state $z_j \in z$  is defined as $\pi_{i,j} = P\{z' = z_j | z = z_i\}$ Furthermore, the persistence of aggregate shock, $\rho$, follows $log(z) = \rho log(z) + \epsilon$ where the distribution of $\epsilon$ is defined as $N(0, \sigma_\epsilon^2)$. 
+
+Given financial investments $b_{t+1}$ and $s_{t+1}$, we compute financial wealth during period $t + 1$ as $x_{t+1} = R_jb_{t+1} + R_{s, t + 1} s_{t+1}$. The representative agent must choose to save with risk free Treasury Bonds or to invest in Bitcoin. Provided that the representative agent has a utility function following $u(c) = \frac{c^{1-\gamma}}{1 - \gamma}$ with consumption, $c$, and a risk aversion parameter of $\gamma$, a partial equilibrium in the infinite horizon model is met when the following value function in time $t$ is maximized. To solve for a partial equilibrium, we maximize the value function during time $t$ by choosing how much to invest in Bitcoin and Treasury Bills during period $t+1$.  
+
+
+$$V (b, s) = max_{b',s'} \{\frac{c^{1-\gamma}}{1 - \gamma} + E(\beta V(b', s')) \}\ $$
+
+subject to
+
+$$c + b' + s' = R_jb + R_ss$$
+$$b' \geq b$$
+$$s' > 0$$
+#Data
+
+#Results 
+
+#Discussion and Conclusion
 
 #References
