@@ -1,5 +1,5 @@
 close; clear; clc;
-global P_dist
+global P_dist x_sim
 rho=0.909;
 sigma_e=0.014;
 Mu=0.0;
@@ -15,10 +15,12 @@ n=length(piz);
 for i=1:n
 P_dist = [P_dist,cumsum(piz(i,:))];
 end
-P_dist=transpose(reshape(P_dist,9,9));
-
+P_dist=transpose(reshape(P_dist,znum,znum));
+cdf_test = P_dist(1,:); 
 %generate the sample path
-
-%for t=1:sample_size-1
-%X=[X,randomdrawfunction(P_dist(X(t))];
-%end
+[sample_test,index]=cdf_randomdraw(cdf_test,zgrid_part_a);
+index=5;
+for i=1:sample_size
+    [sample,index]=cdf_randomdraw(P_dist(index,:),zgrid_part_a);
+    x_sim=[x_sim,sample];
+end
