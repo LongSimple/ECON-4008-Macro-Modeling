@@ -26,13 +26,7 @@ This empirical work seeks to analyze the shock process of Bitcoin as well as the
 #Literature Review 
 
 Robert Lucas (1978) examines the stochastic behavior of equilibrium prices in a
-representative, pure exchange, single good economy with identical consumers.1 His paper first
-examines the behavior of asset prices in a one-good pure exchange economy with identical
-consumers and introduces a method of constructing equilibrium prices. Lucas later defines the
-general equilibrium as a pair of functions: a price function and an optimum value function. To
-reach a competitive equilibrium, all output must be consumed, all asset shares must be held, and
-all asset prices must solve the dynamic program. Thus, the general equilibrium and market
-clearing price for trees at time 𝑡 must satisfy the following *Insert Requirements* Hence, the equilibrium price of the asset must satisfy 𝑝 = 𝐸 {∑= 𝛽1 23(5678 ) 𝑑 } .2 Lusas' paper was the first of its kind to model risky asset ownership decisions and determine how risk premiums are incorporated in the price of an asset.
+representative, pure exchange, single good economy with identical consumers. His paper first examines the behavior of asset prices in a one-good pure exchange economy with identicalconsumers and introduces a method of constructing equilibrium prices. Lucas later defines the general equilibrium as a pair of functions: a price function and an optimum value function. To reach a competitive equilibrium, all output must be consumed, all asset shares must be held, and all asset prices must solve the dynamic program. Thus, the general equilibrium and market clearing price for trees at time 𝑡 must satisfy the following *Insert Requirements* Hence, the equilibrium price of the asset must satisfy *insert something* Lusas' paper was the first of its kind to model risky asset ownership decisions and determine how risk premiums are incorporated in the price of an asset.
 
 Subsequent to the publication of the Lucas Asset Pricing Model, Mehra and Prescott (1985) present the equity premium puzzle. They find that in a competitive pure exchange economy, the average annual yield of equity is, at most, four-tenths of a percent higher than that of short-term debt. In stark contrast, the historical yield observed by Mehra and Prescott has a premium of six percent when accounting for U.S. business cycle fluctuations and reasonable risk aversion levels. They conclude that the historical U.S. equity premium, the return earned by a risky security in excess of that earned by a relatively risk-free U.S. Treasury Bill, is not only irrational but also inexplicable. According to Nada (2013), the economies used in Mehra and Prescott’s study have a “stationary equilibrium for growth rate process on consumption as well as returns”. Nada maintains that the elasticity of substitution between consumption in time period 𝑡 and time period 𝑡 + 1 is sufficiently small to yield a six percent average premium, but the magnitude of
 the covariance between the marginal utility of consumption and equity returns is not sufficiently large enough to justify the equity premium observed. Mehra and Prescott’s equity premium puzzle ignited an extensive research effort within the fields of macroeconomics and finance. A plethora of theoretical speculations and plausible explanations for this anomaly have been presented, but no single solution has been widely accepted by economists.
@@ -45,11 +39,11 @@ Although cryptocurrencies may serve as useful portfolio diversifiers their retur
 
 #Financial Model 
 
-There are two financial assets in which the representative agent can invest: a risk free Treasury Bill, $b_t$, and cryptocurrency, $s_t$. By borrowing or saving with the asset $b_t$, the agent subsequently earns the risk free rate or return, $R_f$. We suppose that the borrowing rate $R_b$ exceed the savings rate so that $R_b = R_f + \omega$, and we let debt be non-defaultable with a borrowing limit $b > 0$. 
+There are two financial assets in which the representative agent can invest: a risk free Treasury Bill, $b_t$, and cryptocurrency, $s_t$. By borrowing or saving with the asset $b_t$, the agent subsequently earns the risk free rate or return, $R_f$. We suppose that the borrowing rate $R_b$ exceed the savings rate so that $$R_b = R_f + \omega$$ and we let debt be non-defaultable with a borrowing limit $b > 0$. 
 
-Alternatively, the returns of cryptocurrency, $R_s$, are calculated at time $t$ by $R_{t} = ln(P_t/P_{t-1})$ with \(P_t\) equal to the price of the Bitcoin price on day \(t\). Bitcoin earns a stochastic return $R_{s, t+1} - R_f = \mu + \eta_{t+1}$ during period $t + 1$ where $\eta_{t+1}$ is assumed to be the innovation to excess returns distributed as $N(0, \sigma_\eta^2)$. The stochastic return of Bitcoin follows a Markov Chain formally described as $z_i \in  Z = \{z_1, z_2, z_3, ... z_{N_z}\}$. The probability of landing in state $z_j \in z$  is defined as $\pi_{i,j} = P\{z' = z_j | z = z_i\}$ Furthermore, the persistence of aggregate shock, $\rho$, follows $log(z) = \rho log(z) + \epsilon$ where the distribution of $\epsilon$ is defined as $N(0, \sigma_\epsilon^2)$. 
+Alternatively, the returns of cryptocurrency, $R_s$, are calculated at time $t$ by $$R_{t} = ln(\frac{P_t}{P_{t-1}})$$ with \(P_t\) equal to the price of the Bitcoin price on day \(t\). Bitcoin earns a stochastic return $$R_{s, t+1} - R_f = \mu + \eta_{t+1}$$ during period $t + 1$ where $\eta_{t+1}$ is assumed to be the innovation to excess returns distributed as $N(0, \sigma_\eta^2)$. The stochastic return of Bitcoin follows a Markov Chain formally described as $$z_i \in  Z = \{z_1, z_2, z_3, ... z_{N_z}\}$$ The probability of landing in state $z_j \in z$  is defined as $$\pi_{i,j} = P\{z' = z_j | z = z_i\}$$ Furthermore, the persistence of aggregate shock, $\rho$, follows $$log(z) = \rho log(z) + \epsilon$$ where the distribution of $\epsilon$ is defined as $N(0, \sigma_\epsilon^2)$. 
 
-Given financial investments $b_{t+1}$ and $s_{t+1}$, we compute financial wealth during period $t + 1$ as $x_{t+1} = R_jb_{t+1} + R_{s, t + 1} s_{t+1}$. The representative agent must choose to save with risk free Treasury Bonds or to invest in Bitcoin. Provided that the representative agent has a utility function following $u(c) = \frac{c^{1-\gamma}}{1 - \gamma}$ with consumption, $c$, and a risk aversion parameter of $\gamma$, a partial equilibrium in the infinite horizon model is met when the following value function in time $t$ is maximized. To solve for a partial equilibrium, we maximize the value function during time $t$ by choosing how much to invest in Bitcoin and Treasury Bills during period $t+1$.  
+Given financial investments $b_{t+1}$ and $s_{t+1}$, we compute financial wealth during period $t + 1$ as $$x_{t+1} = R_jb_{t+1} + R_{s, t + 1} s_{t+1}$$ The representative agent must choose to save with risk free Treasury Bonds or to invest in Bitcoin. Provided that the representative agent has a utility function following $$u(c) = \frac{c^{1-\gamma}}{1 - \gamma}$$ with consumption, $c$, and a risk aversion parameter of $\gamma$, a partial equilibrium in the infinite horizon model is met when the following value function in time $t$ is maximized. To solve for a partial equilibrium, we maximize the value function during time $t$ by choosing how much to invest in Bitcoin and Treasury Bills during period $t+1$.  
 
 
 $$V (b, s) = max_{b',s'} \{\frac{c^{1-\gamma}}{1 - \gamma} + E(\beta V(b', s')) \}\ $$
@@ -59,6 +53,8 @@ subject to
 $$c + b' + s' = R_jb + R_ss$$
 $$b' \geq b$$
 $$s' > 0$$
+
+
 #Data
 
 #Results 
