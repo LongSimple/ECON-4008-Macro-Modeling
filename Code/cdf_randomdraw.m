@@ -1,3 +1,5 @@
+%Create a function that randomly draws 
+
 function [sample,zIdx] = cdf_randomdraw(cdf,x_values)
 rand('seed',12345);
 % init random draw
