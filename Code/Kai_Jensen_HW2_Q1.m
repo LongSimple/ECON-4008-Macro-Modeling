@@ -1,4 +1,4 @@
-close; clear; clc;
+close; clear all; clc;
 global P_dist x_sim
 rho=0.909;
 sigma_e=0.014;
