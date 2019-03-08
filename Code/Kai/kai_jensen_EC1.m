@@ -1,4 +1,4 @@
-close; clear all; clc;
+close; clear; clc;
 
 global cp1 vp1 cp2 vp2 value gk 
 
