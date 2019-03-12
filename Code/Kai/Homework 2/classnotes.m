@@ -13,25 +13,18 @@ sigma_e = .014;
 Nz = 5;
 mu = 0;
 s = 2.575;
+[zgrid, piz] = tauchen(rho, sigma_e, Nz, mu, s); 
+zgrid = exp(zgrid);
 Tv = zeros(Knum, Nz);
 v = Tv;
 G = Tv;
 precision = 1e-5;
 distance = 2 * precision;
 iteration = 0;
-[zgrid, piz] = tauchen(rho, sigma_e, Nz, mu, s); 
-zgrid = exp(zgrid);
-
-    for i = 1:Knum
-         for iz=1:Nz
-            for j = 1:Knum
-                c0(i,iz,j) =  max(zgrid(iz)*(Kgrid(i))^alpha + (1-d)*Kgrid(i) - Kgrid(j), 1e-5);
-            end
-        end
-    end
 
 while distance > precision
     ev = zeros(Knum, Nz);
+    c0 = zeros(Knum, Nz, Knum);
     Tv0 = c0;
     
     for i=1:Knum
@@ -44,16 +37,18 @@ while distance > precision
     for i = 1:Knum
          for iz=1:Nz
             for j = 1:Knum
-                Tv0(i,j) = (c0(i,iz,j)^(1-sigma)-1)/(1-sigma)+ beta*ev(i,iz);
+                c0(i,iz,j) =  max(zgrid(iz)*(Kgrid(i))^alpha + (1-d)*Kgrid(i) - Kgrid(j), 1e-5);  % c cannot be negative
+                Tv0(i,j) = (c0(i,j)^(1-sigma)-1)/(1-sigma)+ beta*ev(i,iz); %correct utility function  
+                %Tv0(i,iz,j)=log(c0(i,iz,j))+beta*ev(i,iz);
             end
         end
     end
 
     for i = 1:Knum
         for iz = 1:Nz 
-        [val,loc] = max(Tv0(i,iz,:)); 
-        Tv(i,iz) = val; 
-        G(i,iz) = Kgrid(loc); 
+       [val,loc] = max(Tv0(i,iz,:)); 
+       Tv(i,iz) = val; 
+       G(i,iz) = Kgrid(loc); 
         end
     end
     
@@ -63,4 +58,3 @@ while distance > precision
     disp(s)
     iteration = iteration + 1;    
 end 
-

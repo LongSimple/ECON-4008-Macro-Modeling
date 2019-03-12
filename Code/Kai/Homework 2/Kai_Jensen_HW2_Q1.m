@@ -8,7 +8,8 @@ sigma=2;
 sigma_e=0.014;
 znum=9;
 
-[zgrid,piz]=tauchen(rho,sigma_e,znum,Mu,s);  
+[zgrid,piz]=tauchen(rho,sigma_e,znum,Mu,s); 
+zgrid=exp(zgrid);
 %allocate memory for CDF Random Draw
 index=5;% starting state(index) for CDF Random Draw
 x_sim=zgrid(index);
