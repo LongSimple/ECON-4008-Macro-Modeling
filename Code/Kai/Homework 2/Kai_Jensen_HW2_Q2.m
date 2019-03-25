@@ -1,66 +1,39 @@
 clear; close all; clc; 
-alpha = .36;
-d = .069;
-beta = .96;
-sigma = 2;
-A = 1;
-Kl = .01; 
-Kh = 6; 
-Knum = 250; 
-Kgrid = linspace(Kl, Kh, Knum); 
-rho = .859;
-sigma_e = .014;
-Nz = 5;
-mu = 0;
-s = 2.575;
-Tv = zeros(Knum, Nz);
-v = Tv;
-G = Tv;
-precision = 1e-5;
-distance = 2 * precision;
-iteration = 0;
-[zgrid, piz] = tauchen(rho, sigma_e, Nz, mu, s); 
-zgrid = exp(zgrid);
-
-    for i = 1:Knum
-         for iz=1:Nz
+globalpar;
+while distance > precision  
+    [c0,Tv0,ev]= deal(zeros(Knum,Nz,Knum),zeros(Knum,Nz,Knum),zeros(Knum,Nz));
+    for iz = 1:Nz
+            for jz = 1:Nz
+                ev(1:Knum,iz) = ev(1:Knum,iz) + piz(iz,jz)*v(1:Knum,jz);                                          
+            end
+            for j=1:Knum
+                cval =  zgrid(iz)*(Kgrid(1:Knum)).^alpha + (1-d)*Kgrid(1:Knum) - Kgrid(j); 
+                c0(1:Knum,iz, j) = max(cval, 0);
+            end
+    end
             for j = 1:Knum
-                c0(i,iz,j) =  max(zgrid(iz)*(Kgrid(i))^alpha + (1-d)*Kgrid(i) - Kgrid(j), 1e-5);
+                Tv0(1:Knum,1:Nz, j) = (c0(1:Knum,1:Nz,j).^(1-sigma)-1)/(1-sigma) + beta.*ev(j,1:Nz);            
             end
-        end
-    end
-
-while distance > precision
-    ev = zeros(Knum, Nz);
-    Tv0 = c0;
-    
-    for i=1:Knum
-        for iz =1:Nz
-            for jz =1:Nz
-                ev(i, iz)= ev(i,iz)+piz(iz,jz)*v(i,jz);
-            end
-        end
-    end
     for i = 1:Knum
-         for iz=1:Nz
-            for j = 1:Knum
-                Tv0(i,j) = (c0(i,iz,j)^(1-sigma)-1)/(1-sigma)+ beta*ev(i,iz);
-            end
+        for iz = 1:Nz
+            [Tv(i,iz),loc] = max(Tv0(i,iz,:));
+            G(i,iz) = Kgrid(loc);
         end
     end
-
-    for i = 1:Knum
-        for iz = 1:Nz 
-        [val,loc] = max(Tv0(i,iz,:)); 
-        Tv(i,iz) = val; 
-        G(i,iz) = Kgrid(loc); 
-        end
-    end
-    
-    distance = max(max(max(abs(Tv - v)))); 
+    distance = max(max(abs(Tv - v)))
     v = Tv; 
-    s = sprintf( ' iteration %4d ||Tv - V|| = %8.6f ', iteration, distance); 
-    disp(s)
-    iteration = iteration + 1;    
-end 
+end
+clc; save Kai_Jensen_HW2_Q2.mat;
+figure
+[Zmat, Kmat] = meshgrid(zgrid, Kgrid);
+subplot(211)
+mesh(Zmat, Kmat, v)
+hold on
+title ( ' Value Function ' )
+subplot(212)
+mesh(Zmat, Kmat, G)
+hold on
+title ( ' Decision Rule ' )  
+saveas(gcf,'decisionrule_valuefunction.png')
+
 
