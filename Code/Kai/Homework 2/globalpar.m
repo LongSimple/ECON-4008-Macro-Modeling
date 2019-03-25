@@ -31,5 +31,5 @@ sample_size=100;
 zgrid=exp(zgrid);
 V=Tv;
 P_dist=[];
-unused = {'Kh','Kl','Mu'};
+unused = {'Kh','Kl','Mu','s'};
 clear (unused{:});
