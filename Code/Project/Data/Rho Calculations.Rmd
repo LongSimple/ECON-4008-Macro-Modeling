@@ -1,0 +1,40 @@
+---
+title: "Calculating Rho: Persistence"
+output: html_notebook
+---
+
+```{r}
+rm(list = ls())
+library(pdfetch)
+library(tidyverse)
+library(xts)
+library(readr)
+library(knitr)
+library(rmgarch)
+library(astsa)
+library(kableExtra)
+
+#Set the working directory 
+setwd("~/Documents/GitHub/ECON-4008-Macro-Modeling/Code/Project/Data")
+
+#Import the Data
+ACF_Data <- read_excel("ACF Data.xlsx")
+Data <- as.data.frame(ACF_Data)
+
+#Look at the ACF/PACF Functions to identify the significant number of lags
+acf2(abs(Data$Returns), max.lag = 8)
+
+#Based on the returns we should use an AR model of 1 
+
+#Add a column of lags 
+Data <- Data %>% 
+  mutate(LagReturns = lag(Returns))
+
+#Run a simple linear regression 
+
+Regression <- lm(Returns ~ LagReturns, Data)
+Coefficients <- Regression$coefficients
+
+Rho <- Coefficients[2]
+```
+
