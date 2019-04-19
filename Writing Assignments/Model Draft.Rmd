@@ -13,11 +13,11 @@ keywords: Equity Premium, Technology, Cryptocurrency
 abstract: |-
   Traditionally, studies that replicate the equity premium
   puzzle with a Lucas Asset Pricing Model examine the excess returns of a risky security
-  or index relative to those of risk free assets or treasury bonds. Until 2016, cryptocurrencies
+  or index relative to those of risk-free assets or treasury bonds. Until 2016, cryptocurrencies
   were largely unacknowledged by academics. Although the volatile behavior of cryptocurrency
   is now at the forefront of many financial economic works, the risk premia necessary
-  to hold cryptocurrencies are scantly studied.This empirical work seeks to analyze the shock process   of Bitcoin as wellas the shock process of relatively risk free U.S. Treasury Bills (i.e. to answer
-  of a relatively risk free U.S. Treasury Bill?). Furthermore, this study seeks to
+  to hold cryptocurrencies are scantly studied.This empirical work seeks to analyze the shock process   of Bitcoin as wellas the shock process of relatively risk-free U.S. Treasury Bills (i.e. to answer
+  of a relatively risk-free U.S. Treasury Bill?). Furthermore, this study seeks to
   examine the risk aversion parameter necessary to generate the level of equity return
   observed in the historical price data of Bitcoin and U.S. Treasury Bills (i.e. to
   generate the level of equity return observed in historical price data of Bitcoin and U.S. Treasury    Bills?).    \par
@@ -27,18 +27,19 @@ abstract: |-
 
 \pagebreak 
 
-There are two financial assets in which the representative agent can invest: a risk free Treasury Bill, $b_t$, and cryptocurrency, $s_t$. By borrowing or saving with the asset $b_t$, the agent subsequently earns the risk free rate or return, $R_f$. We suppose that the borrowing rate $R_b$ exceed the savings rate so that $$R_b = R_f + \omega$$ and we let debt be non-defaultable with a borrowing limit $b > 0$. 
+To examine the shock process of Bitcoin, we employ a method of successive approximations with discrete state-space dynamic programming. During each discrete time period, the agent maximizes llifetime utility by choosing a level of consumption along with a number of bonds and an amount of Bitcoin to hold. 
 
-Alternatively, the returns of cryptocurrency, $R_s$, are calculated at time $t$ by $$R_{t} = ln(\frac{P_t}{P_{t-1}})$$ with \(P_t\) equal to the price of the Bitcoin price on day \(t\). Bitcoin earns a stochastic return $$R_{s, t+1} - R_f = \mu + \eta_{t+1}$$ during period $t + 1$ where $\eta_{t+1}$ is assumed to be the innovation to excess returns distributed as $N(0, \sigma_\eta^2)$. The stochastic return of Bitcoin follows a Markov Chain formally described as $$z_i \in  Z = \{z_1, z_2, z_3, ... z_{N_z}\}$$ The probability of landing in state $z_j \in z$  is defined as $$\pi_{i,j} = P\{z' = z_j | z = z_i\}$$ Furthermore, the persistence of aggregate shock, $\rho$, follows $$log(z) = \rho log(z) + \epsilon$$ where the distribution of $\epsilon$ is defined as $N(0, \sigma_\epsilon^2)$. 
+There are two financial assets in which the representative agent can invest: a risk-free Treasury Bill, $TB_t$, and cryptocurrency, $BC_t$. By saving with the asset $TB_t$, the agent subsequently earns a fixed risk-free rate of return, $R_{TB}$. 
 
-Given financial investments $b_{t+1}$ and $s_{t+1}$, we compute financial wealth during period $t + 1$ as $$x_{t+1} = R_jb_{t+1} + R_{s, t + 1} s_{t+1}$$ The representative agent must choose to save with risk free Treasury Bonds or to invest in Bitcoin. Provided that the representative agent has a utility function following $$u(c) = \frac{c^{1-\gamma}}{1 - \gamma}$$ with consumption, $c$, and a risk aversion parameter of $\gamma$, a partial equilibrium in the infinite horizon model is met when the following value function in time $t$ is maximized. To solve for a partial equilibrium, we maximize the value function during time $t$ by choosing how much to invest in Bitcoin and Treasury Bills during period $t+1$.  
+Alternatively, Bitcoin earns a stochastic return: $$R_{BC} = (R_{TB} + \mu)z$$ that follows a Markov Chain formally described as: $$z_i \in  Z = \{z_1, z_2, z_3, ... z_{N_z}\}$$ The probability of landing in state $z_j \in z$  is defined as $$\pi_{i,j} = P\{z' = z_j | z = z_i\}$$ Furthermore, the persistence of aggregate shock, $\rho$, follows: $$log(z) = \rho log(z) + \epsilon$$ where the distribution of $\epsilon$ is defined as $N(0, \sigma_\epsilon^2)$. 
+
+Given financial investments $BC_{t+1}$ and $TB_{t+1}$, we compute financial wealth during period $t + 1$ as $$x_{t+1} = R_{TB}TB_{t+1} + R_{BC, t + 1} BC_{t+1}$$ The representative agent must choose to save with risk-free Treasury Bonds or to invest in Bitcoin provided that the agent has a utility function following: $$u(c) = \frac{c^{1-\gamma}}{1 - \gamma}$$ with consumption, $c$, and a risk aversion parameter of $\gamma$, a partial equilibrium in the infinite horizon model is met when the following value function in time $t$ is maximized. To solve for a partial equilibrium, we maximize the value function during time $t$ by choosing how much to invest in Bitcoin and Treasury Bills during period $t+1$.  
 
 
-$$V (b, s) = max_{b',s'} \{\frac{c^{1-\gamma}}{1 - \gamma} + E(\beta V(b', s')) \}\ $$
+$$V (TB, BC) = max_{TB',BC'} \{\frac{c^{1-\gamma}}{1 - \gamma} + E(\beta V(TB', BC')) \}\ $$
 
 subject to
 
-$$c + b' + s' = R_jb + R_ss$$
-$$b' \geq b$$
-$$s' > 0$$
+$$C + TB' + BC' = R_{TB}TB + R_{BC}BC$$
+$$BC + TB \leq 1$$
 

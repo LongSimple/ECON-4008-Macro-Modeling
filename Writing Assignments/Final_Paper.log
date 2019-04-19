@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.19 (TeX Live 2018) (preloaded format=pdflatex 2018.4.16)  13 MAR 2019 14:06
+This is pdfTeX, Version 3.14159265-2.6-1.40.19 (TeX Live 2018) (preloaded format=pdflatex 2018.4.16)  19 APR 2019 11:00
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -605,15 +605,15 @@ See the inputenc package documentation for explanation.
 Type  H <return>  for immediate help.
  ...                                              
                                                   
-l.127 spectators.  
+l.124 spectators.  
                       This empirical work seeks to analyze the shock process of
  
 Here is how much of TeX's memory you used:
- 11760 strings out of 492649
- 171583 string characters out of 6129622
- 278360 words of memory out of 5000000
- 15532 multiletter control sequences out of 15000+600000
- 30609 words of font info for 33 fonts, out of 8000000 for 9000
+ 11750 strings out of 492649
+ 171460 string characters out of 6129622
+ 277464 words of memory out of 5000000
+ 15528 multiletter control sequences out of 15000+600000
+ 24438 words of font info for 29 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
  32i,3n,38p,236b,299s stack positions out of 5000i,500n,10000p,200000b,80000s
 !  ==> Fatal error occurred, no output PDF file produced!
