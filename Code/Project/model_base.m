@@ -1,4 +1,4 @@
-nuke;
+clear all; close all; clc;
 alpha = .36; 
 d = .069; 
 beta = .96;
@@ -20,7 +20,8 @@ V = TV;
 G = TV; 
 error = 0.05;
 delta = 2*error;
-iteration = 1;
+iteration = 0;
+tic
 while delta > error
 [c0, TV0, eV] = deal(zeros(Knum, znum, Knum), zeros(Knum, znum, Knum),zeros(Knum, znum));
 eV=squeeze(sum(((permute(((permute(piz,[3 2 1])).*V),[1 3 2]))+eV),3));
@@ -38,5 +39,6 @@ TV0=(c0.^(1-sigma)/(1-sigma)+((permute((calc(:,:,1)),[3 2 1])).*ones(znum,znum,z
     iteration = iteration + 1;
     disp(sprintf ( ' iteration %4d    ||TV-V|| = %8.6f ', iteration, delta))
 end
+toc
 save uncertainty.mat
 
