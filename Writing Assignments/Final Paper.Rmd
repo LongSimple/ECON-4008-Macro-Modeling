@@ -10,6 +10,19 @@ author: |
 output:
   pdf_document: default
   word_document: default
+abstract: |-
+  Traditionally, studies that replicate the equity premium
+  puzzle with a Lucas Asset Pricing Model examine the excess returns of a risky security
+  or index relative to those of risk-free assets or treasury bonds. Until 2016, cryptocurrencies
+  were largely unacknowledged by academics. Although the volatile behavior of cryptocurrency
+  is now at the forefront of many financial economic works, the risk premia necessary
+  to hold cryptocurrencies are scantly studied.This empirical work seeks to analyze the shock process   of Bitcoin as wellas the shock process of relatively risk-free U.S. Treasury Bills (i.e. to answer
+  of a relatively risk-free U.S. Treasury Bill?). Furthermore, this study seeks to
+  examine the risk aversion parameter necessary to generate the level of equity return
+  observed in the historical price data of Bitcoin and U.S. Treasury Bills (i.e. to
+  generate the level of equity return observed in historical price data of Bitcoin and U.S. Treasury    Bills?).    \par
+  \textbf{JEL codes:} B26 (Financial Economics), G14 (Information and Market Efficiency, Event Studies, and Insider Trading), L63 (Microelectronics, Computers, and Communications Equipment)  \par
+  \textbf{Keywords:} Equity Premium; Technology; Cryptocurrency
 keywords: Cryptocurrency, Equity Premium, Finance
 ---
 
