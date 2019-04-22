@@ -25,5 +25,7 @@ $$V (TB, BC) = max_{TB',BC'} \{\frac{c^{1-\gamma}}{1 - \gamma} + E(\beta V(TB', 
 subject to
 
 $$C + TB' + BC' = R_{TB}TB + R_{BC}BC$$
+
+$$C + (1 - BC')+ BC' = R_{TB}(1 - BC) + R_{BC}BC$$
 $$BC + TB \leq 1$$
 
