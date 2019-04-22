@@ -1,4 +1,4 @@
-nuke;
+%nuke;
 beta=.1001;
 rho = .859; 
 sigma_e = .014; 
@@ -166,3 +166,4 @@ while distance > precision
 end
 
 save uncertainty.mat
+end

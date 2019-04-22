@@ -1,4 +1,3 @@
-nuke;
 %Parameters
 alpha = .36; %Capital share of output 
 d = .069; %Capital depreciation rate 
