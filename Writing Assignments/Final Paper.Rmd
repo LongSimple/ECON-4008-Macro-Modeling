@@ -11,19 +11,8 @@ output:
   pdf_document: default
   word_document: default
 abstract: |-
-  Traditionally, studies that replicate the equity premium
-  puzzle with a Lucas Asset Pricing Model examine the excess returns of a risky security
-  or index relative to those of risk-free assets or treasury bonds. Until 2016, cryptocurrencies
-  were largely unacknowledged by academics. Although the volatile behavior of cryptocurrency
-  is now at the forefront of many financial economic works, the risk premia necessary
-  to hold cryptocurrencies are scantly studied.This empirical work seeks to analyze the shock process   of Bitcoin as wellas the shock process of relatively risk-free U.S. Treasury Bills (i.e. to answer
-  of a relatively risk-free U.S. Treasury Bill?). Furthermore, this study seeks to
-  examine the risk aversion parameter necessary to generate the level of equity return
-  observed in the historical price data of Bitcoin and U.S. Treasury Bills (i.e. to
-  generate the level of equity return observed in historical price data of Bitcoin and U.S. Treasury    Bills?).    \par
-  \textbf{JEL codes:} B26 (Financial Economics), G14 (Information and Market Efficiency, Event Studies, and Insider Trading), L63 (Microelectronics, Computers, and Communications Equipment)  \par
-  \textbf{Keywords:} Equity Premium; Technology; Cryptocurrency
-keywords: Cryptocurrency, Equity Premium, Finance
+  Traditionally, studies that replicate the equity premium puzzle with a Lucas Asset Pricing Model examine the excess returns of a risky security or index relative to those of risk-free assets or treasury bonds. Until 2016, cryptocurrencies were largely unacknowledged by academics. Although the volatile behavior of cryptocurrency is now at the forefront of many financial economic works, the risk premia necessary to hold cryptocurrencies are scantly studied.This empirical work seeks to analyze the shock process   of Bitcoin as wellas the shock process of relatively risk-free U.S. Treasury Bills (i.e. to answer of a relatively risk-free U.S. Treasury Bill?).   \par
+  \textbf{Keywords:} Cryptocurrency, Equity Premium, Finance
 ---
 
 #Introduction 
@@ -47,13 +36,11 @@ Much of the financial literature contains ambiguous results concerning the behav
 
 Although cryptocurrencies may serve as useful portfolio diversifiers their returns do not behave similarly to standard asset classes. Liu and Tsyvinski (2018) investigate whether the cryptocurrency market behaves similarly to the stock market. They do so by determining whether or not the returns of cryptocurrency are compensated by risk factors derived from the stock market and analyzing CAPM alphas, CAPM betas, and Eugene Fama and Kenneth French’s five risk factors. Thereafter, they study the exposure of cryptocurrency returns to the Australian Dollar, Canadian Dollar, Euro, Singaporean Dollar, and UK Pound. Although major national currencies strongly comove with one another, the exposures of all cryptocurrencies to major currencies are not statistically significant. Hence, Liu and Tsyvinski (2018) fail to reject the null hypothesis that cryptocurrency serves as another medium of exchange. They also examine the exposure of cryptocurrency returns to precious metal commodities and test whether or not cryptocurrencies serve as a store of value. Again, they find that the exposure of cryptocurrencies is insignificant. Traditional currencies fulfill three objectives: a unit of account, a store of value, and a medium of exchange. However, the implementation of empirical asset pricing models and the analysis of co-movements among Bitcoin, Ripple, Ethereum, stocks, currencies, commodities, macroeconomic factors, and cryptocurrency market specific factors show that cryptocurrencies can be assessed using simple financial tools, but they behave in a radically different manner than traditional assets. Liu and Tsyvinski (2018) lastly conclude that only cryptocurrency market specific factors including momentum and investor attention consistently explain market returns.
 
-#Data
+#Data Description
 
-The returns of cryptocurrency, $R_s$, are calculated at time $t$ by $$R_{t} = ln(\frac{P_t}{P_{t-1}})$$ with \(P_t\) equal to the price of the Bitcoin price on day \(t\). 
+Constant maturity is the theoretical value of a U.S. Treasury Bill based on recent values of auctioned U.S. Treasuries. Constant maturities are obtained by the U.S. Treasury on a daily basis through the interpolation of the Treasury yield curve. We model the risk-free rate of return as the average rate of 20-Year constant maturity treasuries from from January 1, 2017 to March 29, 2019. The long-term Treasury data included in this study was collected from the U.S. Department of the Treasury. 
 
-##Include where the data was gathered from, how many observations, and how frequently collected it was. 
-
-##Discuss how many shock states we include
+The Bitcoin price data that we include in this study was freely gathered from the Federal Reserve Bank of St. Louis. We include the daily closing prices of Bitcoin from January 1, 2017 to March 29, 2019. The returns of cryptocurrency, $R_s$, are calculated at time $t$ by $$R_{t} = ln(\frac{P_t}{P_{t-1}})$$ with \(P_t\) equal to the price of the Bitcoin price on day \(t\) and normalized. 
 
 #Model Environment and Financial Model
 
@@ -71,8 +58,6 @@ $$V (TB, BC) = max_{TB',BC'} \{\frac{c^{1-\gamma}}{1 - \gamma} + E(\beta V(TB', 
 subject to
 
 $$C + TB' + BC' = R_{TB}TB + R_{BC}BC$$
-$$BC + TB \leq 1$$
-
 
 #Results 
 
