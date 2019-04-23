@@ -1,4 +1,4 @@
-nuke;
+%nuke;
 beta=.1001;
 rho = .859; 
 sigma_e = .014; 
@@ -24,7 +24,7 @@ G = TV;
 
 bondstates=transpose(rb*ones(length(stockstates),1));%riskfree rate
 
-precision = 1e-20;
+precision = 1e-5;
 distance = 2*precision;
 iteration = 0;
 while distance > precision
