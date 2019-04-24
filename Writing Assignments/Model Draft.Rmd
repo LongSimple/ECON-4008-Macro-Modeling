@@ -17,15 +17,14 @@ There are two financial assets in which the representative agent can invest: a r
 
 Alternatively, Bitcoin earns a stochastic return: $$R_{BC} = (R_{TB} + \mu)z$$ that follows a Markov Chain formally described as: $$z_i \in  Z = \{z_1, z_2, z_3, ... z_{N_z}\}$$ The probability of landing in state $z_j \in z$  is defined as: $$\pi_{i,j} = P\{z' = z_j | z = z_i\}$$ Furthermore, the persistence of aggregate shock, $\rho$, follows: $$log(z) = \rho log(z) + \epsilon$$ where the distribution of $\epsilon$ is defined as $N(0, \sigma_\epsilon^2)$. 
 
-Given financial investments $BC_{t+1}$ and $TB_{t+1}$, we compute financial wealth during period $t + 1$ as: $$x_{t+1} = R_{TB}TB_{t+1} + R_{BC, t + 1} BC_{t+1}$$ The representative agent must choose to save with risk-free Treasury Bonds or to invest in Bitcoin provided that the agent has a utility function following: $$u(c) = \frac{c^{1-\gamma}}{1 - \gamma}$$ with consumption, $c$, and a risk aversion parameter of $\gamma$, a partial equilibrium in the infinite horizon model is met when the following value function in time $t$ is maximized. To solve for a partial equilibrium, we maximize the value function during time $t$ by choosing how much to invest in Bitcoin and Treasury Bills during period $t+1$.  
+Given financial investments $BC_{t+1}$ and $TB_{t+1}$, we compute financial wealth during period $t + 1$ as: $$x_{t+1} = R_{TB}TB_{t+1} + R_{BC, t + 1} BC_{t+1} + Y$$ where $Y$ is an initial endowment. The representative agent must choose to save with risk-free Treasury Bonds or to invest in Bitcoin provided that the agent has a utility function following: $$u(c) = \frac{c^{1-\gamma}}{1 - \gamma}$$ with consumption, $c$, and a risk aversion parameter of $\gamma$, a partial equilibrium in the infinite horizon model is met when the following value function in time $t$ is maximized. To solve for a partial equilibrium, we maximize the value function during time $t$ by choosing how much to invest in Bitcoin and Treasury Bills during period $t+1$.  
 
 
 $$V (TB, BC) = max_{TB',BC'} \{\frac{c^{1-\gamma}}{1 - \gamma} + E(\beta V(TB', BC')) \}\ $$
 
 subject to
 
-$$C + TB' + BC' = R_{TB}TB + R_{BC}BC$$
+$$C + \frac{1}{R_{TB}}TB' + \frac{1}{R_{BC}}BC' = TB +BC + Y$$
 
-$$C + (1 - BC')+ BC' = R_{TB}(1 - BC) + R_{BC}BC$$
-$$BC + TB \leq 1$$
+$$C \geq 0$$
 

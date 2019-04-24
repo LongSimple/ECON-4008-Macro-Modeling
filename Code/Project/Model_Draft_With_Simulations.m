@@ -1,4 +1,9 @@
-%nuke;
+%Working Model (Including Simulation Code)
+clear; 
+close all; 
+clc; 
+
+
 beta=.1001;
 rho = .859; 
 sigma_e = .014; 
@@ -16,13 +21,14 @@ accuracy=10;
 gamma=0.5;
 maxholdings=1;
 
+Y = 10; %An initial endowment 
 numberofbonds=linspace(0,maxholdings,accuracy); %bond allocation number
 numberofstocks=numberofbonds; %stock allocation number
 TV = zeros(length(numberofstocks),length(numberofstocks),length(stockstates));
 V = TV;
 G = TV;
 
-bondstates=transpose(rb*ones(length(stockstates),1));%riskfree rate
+bondstates=transpose(rb*ones(length(stockstates),1));%risk-free rate
 
 precision = 1e-5;
 distance = 2*precision;
@@ -48,9 +54,15 @@ for states = 1:length(stockstates)
         for b = 1:length(numberofbonds)
         for sprime =1:length(numberofstocks)
             for bprime =1:length(numberofbonds)          
-                    c(s,b,sprime,bprime,states)=((bondstates(states)*numberofbonds(b)+(stockstates(states)*numberofstocks(s))- (numberofbonds(bprime)-numberofstocks(sprime))));
-                   c=max(c,1e-4);
-            end %make s and b constatnt
+                    c(s,b,sprime,bprime,states)= numberofbonds(b) + numberofstocks(s) + Y - ((1/(bondstates(states)))*numberofbonds(bprime)) - ((1/(stockstates(states)))*numberofstocks(sprime)); 
+                    
+                    if c <= 0 
+                        c = 0; 
+                        (stockstates(states))*numberofstocks(sprime) == 0;
+                        (bondstates(states))*numberofbonds(bprime) == numberofbonds(b) + numberofstocks(s) + Y; 
+                    end
+                        
+            end %make s and b constant
         end
         end
     end
@@ -88,13 +100,6 @@ end
 end
 
 save uncertainty.mat
-
-
-%Below is what I think should be our simulation. There's an error somewhere
-%in it, but I'm not sure where. This is indicated by the fact that the
-%s_sim_value is zero for all 500 entries
-
-
 
 %Use our steady state results from last time to simulate the economy for
 %500 periods of time 
@@ -182,24 +187,27 @@ end
 
 %Initiate the variables to store the simulated results
   s_sim_value = zeros(1, tperiod); %Simulated stock value path 
+  b_sim_value = zeros(1, tperiod); %Simulated bond value path 
   
 %Starting with the state variable: s at t = 1- we previously supposed that
 %the first value is 1
   
   s_sim_location(1) = 1; 
   s_sim_value(1) = numberofstocks(s_sim_location(1));
+  b_sim_location(1) = s_sim_location(1); 
+  b_sim_value(1) = numberofbonds(b_sim_location(1)); 
   
-   %Now that we have the first period, we need to store for the rest of the
-  %periods 
+ %Now that we have the first period, we need to store for the rest of the periods 
   
   for t = 2:tperiod 
      %We already solved the decision rule- now we only need to call up those solved values 
      
-     s_sim_value(t) = G2(s_sim_location(t-1), stockstates_sim_location(t-1)); %This is our s value 
+     s_sim_value(t) = G2(s_sim_location(t-1), b_sim_location(t-1), stockstates_sim_location(t-1)); %This is our s value 
      
      %Convert our simulated stock values to our corresponding locations (using gridposition.m function file from
      %Sakai)
      
      s_sim_location(t) = gridposition(numberofstocks, s_sim_value(t));   
   end 
+
 
