@@ -91,7 +91,8 @@ save uncertainty.mat
 
 
 %Below is what I think should be our simulation. There's an error somewhere
-%in it, but I'm not sure where. 
+%in it, but I'm not sure where. This is indicated by the fact that the
+%s_sim_value is zero for all 500 entries
 
 
 
