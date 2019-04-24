@@ -10,6 +10,7 @@ author: |
 output:
   pdf_document: default
   word_document: default
+bibliography: MacroSources.bib
 abstract: |-
   Traditionally, studies that replicate the equity premium puzzle with a Lucas Asset Pricing Model examine the excess returns of a risky security or index relative to those of risk-free assets or treasury bonds. Until 2016, cryptocurrencies were largely unacknowledged by academics. Although the volatile behavior of cryptocurrency is now at the forefront of many financial economic works, the risk premia necessary to hold cryptocurrencies are scantly studied.This empirical work seeks to analyze the shock process   of Bitcoin as wellas the shock process of relatively risk-free U.S. Treasury Bills (i.e. to answer of a relatively risk-free U.S. Treasury Bill?). *Insert preface and preliminary results*   \par
   \textbf{Keywords:} Cryptocurrency, Equity Premium, Finance
@@ -85,4 +86,9 @@ $$C + TB' + BC' = R_{TB}TB + R_{BC}BC$$
 
 *Summarize contribution and work*
 
-#References
+
+
+$\pagebreak$
+
+References {#references .unnumbered}
+==========
