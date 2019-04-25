@@ -31,7 +31,7 @@ bondstates=transpose(rb*ones(length(stockstates),1));%risk-free rate
 stockstates=(1+rb).*exp(stockstates);
 
 
-precision = 100;
+precision = 1e-5;
 distance = 2*precision;
 iteration = 0;
 while distance > precision
@@ -209,7 +209,8 @@ end
      %Convert our simulated stock values to our corresponding locations (using gridposition.m function file from
      %Sakai)
      
-     s_sim_location(t) = gridposition(numberofstocks, s_sim_value(t));   
+     s_sim_location(t) = gridposition(numberofstocks, s_sim_value(t));
+     b_sim_location(t) = gridposition(numberofbonds, b_bond_value(t)); 
   end 
 
 
