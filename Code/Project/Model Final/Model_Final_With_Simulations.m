@@ -3,14 +3,14 @@ clear;
 close all; 
 clc; 
 
-%We will adjust rho, sigma, and mu to match the mean, standard deviation,
-%and AR 1 correlation coefficient in the observed returns of Bitcoin 
+%We will adjust rho, sigma, and mu to match the mean (.002738743), standard deviation (.045007658),
+%and AR 1 correlation coefficient (-.01500449) in the observed returns of Bitcoin 
 
 beta= .95;
-rho = .159; 
-sigma_e = .914; 
+rho = .159; %Adjust this
+sigma_e = .914; %Adjust this
 znum = 15; 
-mu = 0; 
+mu = 0; %Adjust this
 s = 2.575;
 gamma=2;
 
