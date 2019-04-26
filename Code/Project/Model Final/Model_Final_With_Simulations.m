@@ -3,11 +3,13 @@ clear;
 close all; 
 clc; 
 
+%We will adjust rho, sigma, and mu to match the mean, standard deviation,
+%and AR 1 correlation coefficient in the observed returns of Bitcoin 
 
-beta=(.96)^(1/365);
+beta= .95;
 rho = .159; 
 sigma_e = .914; 
-znum = 10; 
+znum = 15; 
 mu = 0; 
 s = 2.575;
 gamma=2;
@@ -17,7 +19,7 @@ gamma=2;
 utility=@(x)(x.^(1-gamma)-1)/(1-gamma);
 
 rb=1.04;
-accuracy=10;
+accuracy=15;
 maxholdings=1;
 
 Y = 1; %An initial endowment 
@@ -31,7 +33,7 @@ bondstates=transpose(rb*ones(length(stockstates),1));%risk-free rate
 stockstates=(1+rb).*exp(stockstates);
 
 
-precision = 1e-5;
+precision = 1e-4;
 distance = 2*precision;
 iteration = 0;
 while distance > precision
@@ -127,6 +129,16 @@ prob_7 = stockstatesmarkov(7, :);
 prob_8 = stockstatesmarkov(8, :); 
 prob_9 = stockstatesmarkov(9, :); 
 prob_10 = stockstatesmarkov(10, :); 
+prob_11 = stockstatesmarkov(11, :); %The First TFP state- Do this for all probability states
+prob_12 = stockstatesmarkov(12, :); 
+prob_13 = stockstatesmarkov(13, :); 
+prob_14 = stockstatesmarkov(14, :); 
+prob_15 = stockstatesmarkov(15, :); 
+% prob_16 = stockstatesmarkov(16, :); 
+% prob_17 = stockstatesmarkov(17, :); 
+% prob_18 = stockstatesmarkov(18, :); 
+% prob_19 = stockstatesmarkov(19, :); 
+% prob_20 = stockstatesmarkov(20, :);
 
 %Suppose the starting stocks at t=1  is numberofstocks(1) and starting probability is stockstates(3)
 
@@ -184,6 +196,52 @@ for t = 2:tperiod
        stockstates_sim_location(t) = sum(r >= cumsum([0, prob_10])); %If we draw a random number if it will transition us to a particular state- this manipulates Matlab to use uniformly randomly generated numbers to fit ino ur Markov transition probability 
        stockstates_sim_value(t) = stockstates(stockstates_sim_location(t)); %This returns the corresponding value of the TFP z 
    
+       elseif stockstates_sim_location(t-1) == 11
+       stockstates_sim_location(t) = sum(r >= cumsum([0, prob_11])); %If we draw a random number if it will transition us to a particular state- this manipulates Matlab to use uniformly randomly generated numbers to fit ino ur Markov transition probability 
+       stockstates_sim_value(t) = stockstates(stockstates_sim_location(t)); %This returns the corresponding value of the TFP z 
+       
+       elseif stockstates_sim_location(t-1) == 12
+       stockstates_sim_location(t) = sum(r >= cumsum([0, prob_12])); %If we draw a random number if it will transition us to a particular state- this manipulates Matlab to use uniformly randomly generated numbers to fit ino ur Markov transition probability 
+       stockstates_sim_value(t) = stockstates(stockstates_sim_location(t)); %This returns the corresponding value of the TFP z 
+       
+       elseif stockstates_sim_location(t-1) == 13
+       stockstates_sim_location(t) = sum(r >= cumsum([0, prob_13])); %If we draw a random number if it will transition us to a particular state- this manipulates Matlab to use uniformly randomly generated numbers to fit ino ur Markov transition probability 
+       stockstates_sim_value(t) = stockstates(stockstates_sim_location(t)); %This returns the corresponding value of the TFP z 
+       
+               
+       elseif  stockstates_sim_location(t-1) == 14
+       stockstates_sim_location(t) = sum(r >= cumsum([0, prob_14])); %If we draw a random number if it will transition us to a particular state- this manipulates Matlab to use uniformly randomly generated numbers to fit ino ur Markov transition probability 
+       stockstates_sim_value(t) = stockstates(stockstates_sim_location(t)); %This returns the corresponding value of the TFP z 
+       
+                   
+       elseif stockstates_sim_location(t-1) == 15                
+       stockstates_sim_location(t) = sum(r >= cumsum([0, prob_15])); %If we draw a random number if it will transition us to a particular state- this manipulates Matlab to use uniformly randomly generated numbers to fit ino ur Markov transition probability 
+       stockstates_sim_value(t) = stockstates(stockstates_sim_location(t)); %This returns the corresponding value of the TFP z 
+   
+%        elseif  stockstates_sim_location(t-1) == 16
+%        stockstates_sim_location(t) = sum(r >= cumsum([0, prob_16])); %If we draw a random number if it will transition us to a particular state- this manipulates Matlab to use uniformly randomly generated numbers to fit ino ur Markov transition probability 
+%        stockstates_sim_value(t) = stockstates(stockstates_sim_location(t)); %This returns the corresponding value of the TFP z 
+%        
+%        elseif  stockstates_sim_location(t-1) == 17
+%        stockstates_sim_location(t) = sum(r >= cumsum([0, prob_17])); %If we draw a random number if it will transition us to a particular state- this manipulates Matlab to use uniformly randomly generated numbers to fit ino ur Markov transition probability 
+%        stockstates_sim_value(t) = stockstates(stockstates_sim_location(t)); %This returns the corresponding value of the TFP z 
+%        
+%      elseif  stockstates_sim_location(t-1) == 18
+%        stockstates_sim_location(t) = sum(r >= cumsum([0, prob_18])); %If we draw a random number if it will transition us to a particular state- this manipulates Matlab to use uniformly randomly generated numbers to fit ino ur Markov transition probability 
+%        stockstates_sim_value(t) = stockstates(stockstates_sim_location(t)); %This returns the corresponding value of the TFP z 
+%       
+%       elseif  stockstates_sim_location(t-1) == 19
+%        stockstates_sim_location(t) = sum(r >= cumsum([0, prob_19])); %If we draw a random number if it will transition us to a particular state- this manipulates Matlab to use uniformly randomly generated numbers to fit ino ur Markov transition probability 
+%        stockstates_sim_value(t) = stockstates(stockstates_sim_location(t)); %This returns the corresponding value of the TFP z 
+%          
+%        elseif  stockstates_sim_location(t-1) == 20
+%        stockstates_sim_location(t) = sum(r >= cumsum([0, prob_20])); %If we draw a random number if it will transition us to a particular state- this manipulates Matlab to use uniformly randomly generated numbers to fit ino ur Markov transition probability 
+%        stockstates_sim_value(t) = stockstates(stockstates_sim_location(t)); %This returns the corresponding value of the TFP z 
+%    
+       
+       
+       
+       
    end 
 end
 
