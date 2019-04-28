@@ -18,6 +18,15 @@ abstract: |-
 
 \pagebreak 
 
+```{r, message=FALSE, warning=FALSE, include=FALSE}
+####   Clear memory and load needed packages
+rm(list = ls())
+
+library(plyr)
+library(knitr)
+library(readr)
+library(kableExtra)
+```
 
 #Introduction 
 
@@ -61,20 +70,23 @@ $$V (TB, BC) = max_{TB',BC'} \{\frac{c^{1-\gamma}}{1 - \gamma} + E(\beta V(TB', 
 subject to
 
 $$C + TB' + BC' = R_{TB}TB + R_{BC}BC$$
+#Data Description
+
+We assume the risk-free rate of return is five percent based on historical data collected from the U.S. Department of the Treasury. The Bitcoin price data that we include was freely gathered from the Federal Reserve Bank of St. Louis. We use the daily closing prices of Bitcoin from January 1, 2017 to March 29, 2019. The returns of cryptocurrency, $R_{BC}$, are calculated at time $t$ by $$R_{t} = ln(\frac{P_t}{P_{t-1}})$$ with \(P_t\) equal to the price of the Bitcoin price on day \(t\) and normalized. 
+
+```{r, echo= FALSE}
+SumStats <- ldply(c("Minimum", "Maximum", "Mean", "Median", "Standard Deviation", "AR 1 Correlation Coefficient", "Number of Observations"))
+Statval <- ldply(c(-3.5470, 5.9830, .0027, .0029, .045008, -.0150045, 819))
+SumStats <- cbind(SumStats, Statval)
+names(SumStats) <- c("Statistic", "Value")
+kable(SumStats, digits = 8, booktabs = T, caption = "Summary Statistics for Bitcoin Returns")
+```
 
 #Results 
 
-##Data Description
-
-Constant maturity is the theoretical value of a U.S. Treasury Bill based on recent values of auctioned U.S. Treasuries. Constant maturities are obtained by the U.S. Treasury on a daily basis through the interpolation of the Treasury yield curve. We model the risk-free rate of return as the average rate of 20-Year constant maturity treasuries from from January 1, 2017 to March 29, 2019. The long-term Treasury data included in this study was collected from the U.S. Department of the Treasury. 
-
-The Bitcoin price data that we include in this study was freely gathered from the Federal Reserve Bank of St. Louis. We include the daily closing prices of Bitcoin from January 1, 2017 to March 29, 2019. The returns of cryptocurrency, $R_s$, are calculated at time $t$ by $$R_{t} = ln(\frac{P_t}{P_{t-1}})$$ with \(P_t\) equal to the price of the Bitcoin price on day \(t\) and normalized. 
-
-*Data target*
+*Discuss calibration- find the parameter values; what parameter values of mu, sigma, and rho in the simulation make it so there is a match with the actual data's standard deviation, mean, AR 1 correlation coefficient?*
 
 *Include a table with the variable, value, and description for columns*
-
-*Discuss calibration- find the parameter values; what parameter values of mu, sigma, and rho in the simulation make it so there is a match with the actual data's standard deviation, mean, AR 1 correlation coefficient?*
 
 #Discussion and Conclusion
 
