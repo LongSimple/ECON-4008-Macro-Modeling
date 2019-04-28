@@ -3,10 +3,10 @@ clear; close all; clc;
 %We will adjust rho, sigma, and mu to match the mean (.002738743), standard deviation (.045007658),
 %and AR 1 correlation coefficient (-.01500449) in the observed returns of Bitcoin 
 beta= .85;
-rho = -.9989; %Keep for now as is and adjust later
-sigma_e = .0009; %Adjust this
+rho = -.999; %Keep for now as is and adjust later
+sigma_e = .0000003; %Adjust this
 znum = 20; 
-mu = -6.7; %Adjust this
+mu = -9.64; %Adjust this
 s = 2.575;
 gamma = 2;  
 [stockstates, stockstatesmarkov] = tauchen(rho, sigma_e, znum, mu, s);
@@ -134,5 +134,5 @@ stdev_returns = std(stock_sim_returnstest);
 lagcorr = stock_sim_returnstest(1:end - 1, :)\stock_sim_returnstestlag; 
 
 disp(average_returns) %We want this to equal 0.025441798
-disp(stdev_returns) %We want this to equal 0.083099504
+disp(stdev_returns) %We want this to equal 0.045007658
 disp(lagcorr) %We want this to equal -0.01500449

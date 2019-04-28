@@ -84,7 +84,9 @@ kable(SumStats, digits = 8, booktabs = T, caption = "Summary Statistics for Bitc
 
 #Results 
 
-*Discuss calibration- find the parameter values; what parameter values of mu, sigma, and rho in the simulation make it so there is a match with the actual data's standard deviation, mean, AR 1 correlation coefficient?*
+We assume the agent has a subjective discount value of $.85$ and a risk aversion parameter equal to two. After adjusting $\rho$, $\mu$, and $\sigma_e$, the persistence of shock, mean, and variance of *something*, model fails to accurately simulate stock returns with summary statistics equal to those observed in the data. 
+
+*Discuss calibration- find the parameter values; what parameter values of mu, sigma, and rho in the simulation make it so there is a match with the actual data's standard deviation, mean, AR 1 correlation coefficient (can't replicate)?*
 
 *Include a table with the variable, value, and description for columns*
 
