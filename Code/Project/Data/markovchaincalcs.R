@@ -5,13 +5,20 @@ library(caret)
 library(readxl)
 library(xlsx)
 bitcoin_price_data <- read_excel("Classes/MacroModeling/Working/Project/Code/Project/Data/bitcoin_price_data.xlsx", 
-                                 sheet = "export2", col_types = c("numeric", 
-                                                                  "numeric", "numeric"))
+                                 sheet = "export")
+range(bitcoin_price_data$`Adjusted Returns`)
+data_dicretized <- discretize(bitcoin_price_data$`Adjusted Returns`, disc="globalequalwidth", nbins=102)
+bitcoin_price_data$`Adjusted Returns` <- data_dicretized$X
 
-sequence <- rep(bitcoin_price_data$Return, bitcoin_price_data$`Times Sampled`)
 
-sequenceMatr<-createSequenceMatrix(sequence,sanitize=FALSE)
-mcFitMLE<-markovchainFit(data=sequence)
-mcFitBSP<-markovchainFit(data=sequence,method="bootstrap",nboot=5, name="Bootstrap Mc")
-write.xlsx(mcFitMLE[["standardError"]], "Classes/MacroModeling/Working/Project/Code/Project/Data/markovchain.xlsx")
+
+
+
+
+
+sequence <- bitcoin_price_data$`Adjusted Returns`
+
+testchain<-markovchainFit(data=sequence, method = "bootstrap", byrow = TRUE, nboot = 10,laplacian=0,"markovchianboi")
+
+write.xlsx(testchain[["estimate"]]@transitionMatrix, "Classes/MacroModeling/Working/Project/Code/Project/Data/markovchain.xlsx")
 
