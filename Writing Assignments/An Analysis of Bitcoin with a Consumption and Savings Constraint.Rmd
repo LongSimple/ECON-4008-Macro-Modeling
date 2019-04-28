@@ -84,7 +84,15 @@ kable(SumStats, digits = 8, booktabs = T, caption = "Summary Statistics for Bitc
 
 #Results 
 
-We assume the agent has a subjective discount value of $.85$ and a risk aversion parameter equal to two. After adjusting $\rho$, $\mu$, and $\sigma_e$, the persistence of shock, mean, and variance of *something*, model fails to accurately simulate stock returns with summary statistics equal to those observed in the data. 
+##Assumptions 
+We assume the agent has a subjective discount value of $.85$ and a risk aversion parameter equal to two. 
+
+##Number of stock states Tauchen Algorithm
+
+##Parameters Changed and Meanings
+After adjusting $\rho$, $\mu$, and $\sigma_e$, the persistence of shock, mean, and variance of *something*, model fails to accurately simulate stock returns with summary statistics equal to those observed in the data. 
+
+###Effects of changing parameterers ceteris paribus
 
 *Discuss calibration- find the parameter values; what parameter values of mu, sigma, and rho in the simulation make it so there is a match with the actual data's standard deviation, mean, AR 1 correlation coefficient (can't replicate)?*
 
@@ -92,9 +100,7 @@ We assume the agent has a subjective discount value of $.85$ and a risk aversion
 
 #Discussion and Conclusion
 
-*Analyze results and include economic implications*
-
-*What is the difference in parameter and describe why these give us the results*
+*Why might we not be able to replicate the data?*
 
 *Summarize contribution and work*
 
