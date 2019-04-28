@@ -2,19 +2,19 @@
 clear; close all; clc; 
 %We will adjust rho, sigma, and mu to match the mean (.002738743), standard deviation (.045007658),
 %and AR 1 correlation coefficient (-.01500449) in the observed returns of Bitcoin 
-beta= .95;
-rho = -.999995; %Adjust this
-sigma_e = 0.083099504; %Adjust this
+beta= .85;
+rho = -.9989; %Keep for now as is and adjust later
+sigma_e = .0009; %Adjust this
 znum = 20; 
-mu = 0.025441798; %Adjust this
+mu = -6.7; %Adjust this
 s = 2.575;
-gamma=2;
+gamma = 2;  
 [stockstates, stockstatesmarkov] = tauchen(rho, sigma_e, znum, mu, s);
 utility=@(x)(x.^(1-gamma)-1)/(1-gamma);
 rb=1.04;
 accuracy=10;
 maxholdings=1;
-stockstates=exp(stockstates);
+stockstates=(rb)*exp(stockstates);
 Y = 1; %An initial endowment 
 numberofbonds=linspace(0,maxholdings,accuracy); %bond allocation number
 numberofstocks=numberofbonds; %stock allocation number
@@ -124,5 +124,15 @@ end
 n=200;%truncate this
 stock_sim_returnstest=transpose(stock_sim_returns);
 stock_sim_returnstest=stock_sim_returnstest(n+1:end,:);
+stock_sim_returnstestlag = stock_sim_returnstest(2:end,:); 
 
 all_time_returns=sum(stock_sim_returns);
+
+
+average_returns = mean(stock_sim_returnstest); 
+stdev_returns = std(stock_sim_returnstest); 
+lagcorr = stock_sim_returnstest(1:end - 1, :)\stock_sim_returnstestlag; 
+
+disp(average_returns) %We want this to equal 0.025441798
+disp(stdev_returns) %We want this to equal 0.083099504
+disp(lagcorr) %We want this to equal -0.01500449
