@@ -121,8 +121,20 @@ for q = 1:length(stockstates_sample_path)
     stock_sim_returns(q)=s_sim_value(q)*stockstates_sample_path(q);
 end
 
-n=200;%truncate this
-stock_sim_returnstest=transpose(stock_sim_returns);
-stock_sim_returnstest=stock_sim_returnstest(n+1:end,:);
+% n=200;%truncate this
+% stock_sim_returnstest=transpose(stock_sim_returns);
+% stock_sim_returnstest=stock_sim_returnstest(n+1:end,:);
+% 
+% all_time_returns=sum(stock_sim_returnstest);
 
-all_time_returns=sum(stock_sim_returnstest);
+stockstates_sample_path = transpose(stockstates_sample_path); 
+stockstates_sample_path_lag = stockstates_sample_path(2:end, :); 
+
+
+average_returns = mean(stockstates_sample_path); 
+ stdev_returns = std(stockstates_sample_path); 
+ lagcorr = stockstates_sample_path(1:end - 1, :)\stockstates_sample_path_lag; 
+ 
+ disp(average_returns)
+ disp(stdev_returns) 
+ disp(lagcorr) 
