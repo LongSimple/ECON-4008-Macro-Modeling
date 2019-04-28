@@ -1,0 +1,41 @@
+%Working Model (Including Simulation Code)
+clear; close all; clc; 
+
+load btcchoice_model.mat
+
+sample_size = 500; %sample size (time periods)
+[stockstates_sample_path_index, index] = deal(3); % starting state(index) for CDF Random Draw
+stockstates_sample_path = stockstates(index);
+
+%Make Probability Distribution
+P_dist=[];
+for i = 1:length(stockstatesmarkov)
+    P_dist = [P_dist, cumsum(stockstatesmarkov(i, :))];
+end
+P_dist = transpose(reshape(P_dist, znum, znum));
+
+%Random Draw
+for i = 1:sample_size - 1
+    [sample, index] = cdf_randomdraw(P_dist(index, :), stockstates);
+    [stockstates_sample_path, stockstates_sample_path_index] = deal([stockstates_sample_path, sample], [stockstates_sample_path_index, index]);
+end
+%Initiate the variables to store the simulated results
+[s_sim_value,b_sim_value] = deal(zeros(1, sample_size)); %Simulated stock value path 
+ 
+%Starting with the state variable: s at t = 1- we previously supposed that
+%the first value is 1
+
+  s_sim_location(1) = 1; 
+  s_sim_value(1) = numberofstocks(s_sim_location(1));
+  
+  b_sim_location(1) = s_sim_location(1); 
+  b_sim_value(1) = numberofbonds(b_sim_location(1)); 
+  
+ %Use decision rule
+  for t = 2:sample_size-1 
+     s_sim_value(t) = G2(s_sim_location(t-1), b_sim_location(t-1), stockstates_sample_path_index(t-1)); %s value 
+     s_sim_location(t) = find(numberofstocks == s_sim_value(t));
+     b_sim_location(t) = find(numberofbonds == b_sim_value(t)); 
+  end 
+for q = 1:length(stockstates_sample
+    stock_sim_returns(t)=stockstates()*stockstates_sample_path(q)
