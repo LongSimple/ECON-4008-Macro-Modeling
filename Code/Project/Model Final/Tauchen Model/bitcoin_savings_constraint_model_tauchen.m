@@ -8,10 +8,10 @@ rb=1.0225; %Bond Return
 Y = 1; %An initial endowment 
 
 %Create Markov Chain
-rho = -.9989; %Keep for now as is and adjust later
-sigma_e = .0009; %Adjust this
-znum = 20; 
-mu = -6.7; %Adjust this
+rho = .05; %Keep for now as is and adjust later
+sigma_e = 2; %Adjust this
+znum = 60; 
+mu = 2; %Adjust this
 s = 2.575;
 [stockstates, stockstatesmarkov] = tauchen(rho, sigma_e, znum, mu, s);
 stockstates=exp(stockstates);
@@ -28,7 +28,7 @@ numberofstocks=numberofbonds; %stock allocation number
 bondstates=transpose(rb*ones(length(stockstates),1));%risk-free rate
 
 %Successive Approximation Parameters
-precision = 1;
+precision = 1e-3;
 distance = 2*precision;
 iteration = 0;
 
@@ -89,7 +89,7 @@ end
 save btcchoice_model.mat
 
 %Simulation
-simulation_runs = 10;%Run Simulation x times
+simulation_runs = 100;%Run Simulation x times
 
 
 for runs = 1:simulation_runs
@@ -147,10 +147,12 @@ end
 
 average_returns_val = mean(average_returns);
 average_returns_drule_val = mean(average_returns_drule);
+disp(average_returns_drule_val)
 
 stdev_returns_val = mean(stdev_returns);
 stdev_returns_drule_val = mean(stdev_returns_drule);
+disp(stdev_returns_drule_val)
 
 lagcorr_val = mean(lagcorr);
 lagcorr_drule_val = mean(lagcorr_drule);
-
+disp(lagcorr_drule_val)

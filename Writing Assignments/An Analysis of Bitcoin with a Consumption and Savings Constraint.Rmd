@@ -10,11 +10,9 @@ author: |
 output:
   pdf_document: default
   word_document: default
-  
 bibliography: MacroSources.bib
-
 abstract: |-
-  Traditionally, studies that replicate the equity premium puzzle with a Lucas Asset Pricing Model examine the excess returns of a risky security or index relative to those of risk-free assets or treasury bonds. Until 2016, cryptocurrencies were largely unacknowledged by academics. Although the volatile behavior of cryptocurrency is now at the forefront of many financial economic works, the risk premia necessary to hold cryptocurrencies are scantly studied.This empirical work seeks to analyze the shock process   of Bitcoin as wellas the shock process of relatively risk-free U.S. Treasury Bills (i.e. to answer of a relatively risk-free U.S. Treasury Bill?). **Insert preface and preliminary results**   \par
+  Traditionally, studies that replicate the equity premium puzzle with a Lucas Asset Pricing Model examine the excess returns of a risky security or index relative to those of risk-free assets or treasury bonds. Until 2016, cryptocurrencies were largely unacknowledged by academics. Although the volatile behavior of cryptocurrency is now at the forefront of many financial economic works, our study is the only to examine the risk aversion parameters necessary to hold cryptocurrencies and analyze the consumer's decision to invest in cryptocurrencies over risk-free bonds. Furthermore, this study analyzes the shock process of Bitcoin as well as the shock process of relatively risk-free U.S. Treasury Bills (i.e. to answer of a relatively risk-free U.S. Treasury Bill?).   \par
   \textbf{Keywords:} Cryptocurrency, Equity Premium, Finance
   
 fontsize: 11pt
@@ -22,7 +20,7 @@ fontsize: 11pt
 
 \pagebreak 
 
-**Fix the abstract**
+**Fix the abstract- include prelim results**
 
 ```{r, message=FALSE, warning=FALSE, include=FALSE}
 ####   Clear memory and load needed packages
@@ -56,8 +54,7 @@ This empirical work seeks to analyze the shock process of Bitcoin as well as the
 Robert Lucas (1978) examines the stochastic behavior of equilibrium prices in a
 representative, pure exchange, single good economy with identical consumers. His paper first examines the behavior of asset prices in a one-good pure exchange economy with identicalconsumers and introduces a method of constructing equilibrium prices. Lucas later defines the general equilibrium as a pair of functions: a price function and an optimum value function. To reach a competitive equilibrium, all output must be consumed, all asset shares must be held, and all asset prices must solve the dynamic program. Thus, the general equilibrium and market clearing price for trees at time $t$ must satisfy the following: $s^*_t, a^*_t = p_t$, and $c^*_t = d_t$. Hence, the equilibrium price must satisfy $p_t = \mathbb{E}\{\sum_{n = 1}^\infty \beta^n \frac{u'(d_{t+n})}{u'(d_t)}\}$. Lusas' paper was the first of its kind to model risky asset ownership decisions and determine how risk premiums are incorporated in the price of an asset.
 
-Subsequent to the publication of the Lucas Asset Pricing Model, Mehra and Prescott (1985) present the equity premium puzzle. They find that in a competitive pure exchange economy, the average annual yield of equity is, at most, four-tenths of a percent higher than that of short-term debt. In stark contrast, the historical yield observed by Mehra and Prescott has a premium of six percent when accounting for U.S. business cycle fluctuations and reasonable risk aversion levels. They conclude that the historical U.S. equity premium, the return earned by a risky security in excess of that earned by a relatively risk-free U.S. Treasury Bill, is not only irrational but also inexplicable. According to Nada (2013), the economies used in Mehra and Prescott’s study have a “stationary equilibrium for growth rate process on consumption as well as returns”. Nada maintains that the elasticity of substitution between consumption in time period $t$ and time period $t+1$ is sufficiently small to yield a six percent average premium, but the magnitude of
-the covariance between the marginal utility of consumption and equity returns is not sufficiently large enough to justify the equity premium observed. Mehra and Prescott’s equity premium puzzle ignited an extensive research effort within the fields of macroeconomics and finance. A plethora of theoretical speculations and plausible explanations for this anomaly have been presented, but no single solution has been widely accepted by economists.
+Subsequent to the publication of the Lucas Asset Pricing Model, Mehra and Prescott (1985) present the equity premium puzzle. They find that in a competitive pure exchange economy, the average annual yield of equity is, at most, four-tenths of a percent higher than that of short-term debt. In stark contrast, the historical yield observed by Mehra and Prescott has a premium of six percent when accounting for U.S. business cycle fluctuations and reasonable risk aversion levels. They conclude that the historical U.S. equity premium, the return earned by a risky security in excess of that earned by a relatively risk-free U.S. Treasury Bill, is not only irrational but also inexplicable. According to Nada (2013), the economies used in Mehra and Prescott’s study have a “stationary equilibrium for growth rate process on consumption as well as returns”. Nada maintains that the elasticity of substitution between consumption in time period $t$ and time period $t+1$ is sufficiently small to yield a six percent average premium, but the magnitude of the covariance between the marginal utility of consumption and equity returns is not sufficiently large enough to justify the equity premium observed. Mehra and Prescott’s equity premium puzzle ignited an extensive research effort within the fields of macroeconomics and finance. A plethora of theoretical speculations and plausible explanations for this anomaly have been presented, but no single solution has been widely accepted by economists.
 
 Traditionally, studies that replicate the equity premium puzzle with a Lucas Asset Pricing Model examine the excess returns of a risky security or index relative to those of risk-free assets or treasury bonds. Although virtual currencies resemble the role of money and create an alternative environment for conducting business, it was not until 2016 that cryptocurrencies were unacknowledged by academics. Cryptocurrencies are commonly used as methods of payments, but it is heavily debated whether they truly function as currencies. Since the role cryptocurrency plays is unclear to many, how cryptocurrency is regulated by financial institutions is controversial. Vandezande (2017) claims that it is increasingly important to analyze the behavior of cryptocurrencies as financial tools because there are few explanations for the current behavior of cryptocurrencies as investment tools. He analyzes the extent to which virtual currencies are regulated within the European Union and ascertains that cryptocurrencies have the highest risk among all types of virtual currencies. Although Vandezande (2017) does not include empirical tests, he further maintains that investors are not fully informed about the risk relating to cryptocurrency investments due to the absence of regulatory bodies and the enforcement of protection mechanisms. He lastly suggests that legal frameworks used for traditional currenciesand financial investments are applicable to the various types of virtual currencies and cryptocurrency service providers.
 
@@ -67,15 +64,13 @@ Although cryptocurrencies may serve as useful portfolio diversifiers their retur
 
 #Model Environment and Financial Model
 
-To examine the shock process of Bitcoin, we employ a method of successive approximations with discrete state-space dynamic programming. During each discrete time period, the agent maximizes llifetime utility by choosing a level of consumption along with a number of bonds and an amount of Bitcoin to hold. **Include optimum growth and time frame- include what each period means (daily)- note that the agent is an individual person**
-
-**Make sure each variable is clearly defined and all processes are in functional form**
+To examine the shock process of Bitcoin, we employ a method of successive approximations with discrete state-space dynamic programming. During each discrete time period, a single trading day, an individual agent maximizes lifetime utility by choosing a level of consumption along with a number of bonds and an amount of Bitcoin to hold. 
 
 There are two financial assets in which the representative agent can invest: a risk-free Treasury Bill, $TB_t$, and cryptocurrency, $BC_t$. By saving with the asset $TB_t$, the agent subsequently earns a fixed risk-free rate of return, $R_{TB}$. 
 
-Alternatively, Bitcoin earns a stochastic return: $$R_{BC} = (R_{TB} + \mu)z$$ that follows a Markov Chain formally described as: $$z_i \in  Z = \{z_1, z_2, z_3, ... z_{N_z}\}$$ The probability of landing in state $z_j \in z$  is defined as $$\pi_{i,j} = P\{z' = z_j | z = z_i\}$$ Furthermore, the persistence of aggregate shock, $\rho$, follows: $$log(z) = \rho log(z) + \epsilon$$ where the distribution of $\epsilon$ is defined as $N(0, \sigma_\epsilon^2)$. 
+Alternatively, Bitcoin earns a stochastic return: $$R_{BC} = (R_{TB} + \mu)z$$ that follows a Markov Chain formally described as: $$z_i \in  Z = \{z_1, z_2, z_3, ... z_{N_z}\}$$ The probability of landing in state $z_j \in z$  is defined as: $$\pi_{i,j} = P\{z' = z_j | z = z_i\}$$ Furthermore, the persistence of aggregate shock, $\rho$, follows: $$log(z) = \rho log(z) + \epsilon$$ where the distribution of $\epsilon$ is defined as $N(0, \sigma_\epsilon^2)$. 
 
-Given financial investments $BC_{t+1}$ and $TB_{t+1}$, we compute financial wealth during period $t + 1$ as $$x_{t+1} = R_{TB}TB_{t+1} + R_{BC, t + 1} BC_{t+1}$$ The representative agent must choose to save with risk-free Treasury Bonds or to invest in Bitcoin provided that the agent has a utility function following: $$u(c) = \frac{c^{1-\gamma}}{1 - \gamma}$$ with consumption, $c$, and a risk aversion parameter of $\gamma$, a partial equilibrium in the infinite horizon model is met when the following value function in time $t$ is maximized. To solve for a partial equilibrium, we maximize the value function during time $t$ by choosing how much to invest in Bitcoin and Treasury Bills during period $t+1$.  
+Given financial investments $BC_{t+1}$ and $TB_{t+1}$, we compute financial wealth during period $t + 1$ as: $$x_{t+1} = R_{TB}TB_{t+1} + R_{BC, t + 1} BC_{t+1}$$ The representative agent must choose to save with risk-free Treasury Bonds or to invest in Bitcoin provided that the agent has a utility function following: $$u(c) = \frac{c^{1-\gamma}}{1 - \gamma}$$ with consumption, $c$, and a risk aversion parameter of $\gamma$, a partial equilibrium in the infinite horizon model is met when the following value function in time $t$ is maximized. To solve for a partial equilibrium, we maximize the value function during time $t$ by choosing how much to invest in Bitcoin and Treasury Bills during period $t+1$. The agent must maximize the following:  
 
 
 $$V (TB, BC) = max_{TB',BC'} \{\frac{c^{1-\gamma}}{1 - \gamma} + E(\beta V(TB', BC')) \}\ $$
@@ -86,9 +81,9 @@ $$C + TB' + BC' = R_{TB}TB + R_{BC}BC$$
 
 #Data Description 
 
-We assume the risk-free rate of return is five percent based on historical data collected from the U.S. Department of the Treasury. The Bitcoin price data that we include was freely gathered from the Federal Reserve Bank of St. Louis. We use the daily closing prices of Bitcoin from January 1, 2017 to March 29, 2019. The returns of cryptocurrency, $R_{BC}$, are calculated at time $t$ by $$R_{t} = ln(\frac{P_t}{P_{t-1}})$$ with \(P_t\) equal to the price of the Bitcoin price on day \(t\) and normalized. 
+We assume the risk-free rate of return is five percent based on historical data collected from the U.S. Department of the Treasury. The Bitcoin price data that we include was freely gathered from the Federal Reserve Bank of St. Louis. We use the daily closing prices of Bitcoin from January 1, 2017 to March 29, 2019. The returns of cryptocurrency, $R_{BC}$, are calculated at time $t$ by: $$R_{t} = ln(\frac{P_t}{P_{t-1}})$$ with \(P_t\) equal to the price of the Bitcoin price on day \(t\) and normalized. 
 
-We included two lags in the autoregressive model based on the results of the autocorrelation function (ACF) and partial autocorrelation function (PACF). The ACF describes the autocorrelation between each observation and an observation one period before that. In contrast, the PACF describes the direct relationship between an observation and its lag. The partial autocorrelation functions suggest that there exists a significant correlation for one lag and three lags. Hence, the autoregressive regression include the prior period’s reported returns as well as three prior period's returns as independent variables and assumes the form $$R_t = \alpha + \beta_1 R_{t-1} + \beta_2 R_{t - 3} + \epsilon$$  
+We include two lags in the autoregressive model based on the results of the autocorrelation function (ACF) and partial autocorrelation function (PACF). The ACF describes the autocorrelation between each observation and an observation one period before that. In contrast, the PACF describes the direct relationship between an observation and its lag. The partial autocorrelation functions suggest that there exists a significant correlation for one lag and three lags. Hence, the autoregressive regression assumes the form: $$R_t = \alpha + \beta_1 R_{t-1} + \beta_2 R_{t - 3} + \epsilon$$  
 
 ```{r, include=FALSE, message=FALSE, warning=FALSE, paged.print=FALSE}
 #Import the Data
@@ -115,24 +110,53 @@ Regression <- lm(Returns ~ LagReturns + LagReturns3, Data)
 Coefficients <- Regression$coefficients
 ```
 
-During the examined period, the returns of Bitcoin ranged from -354.7% to 598.3%, and the mean return during this holding period was .27%. With 90% confidence, we conclude that the correlation coefficients of the autoregressive regression are statistically significant. 
+During the examined period, the returns of Bitcoin ranged from -97.119% to 39,663.05%, and the mean return during this holding period was 238.228%. With 90% confidence, we conclude that the correlation coefficients of the autoregressive regression are statistically significant. 
 
 ```{r, echo=FALSE, message=FALSE, warning=FALSE, results = "asis"}
 SumStats <- ldply(c("Minimum", "Maximum", "Mean", "Median", "Standard Deviation", "AR 1 Correlation Coefficient", "AR 3 Correlation Coefficient", "Number of Observations"))
-Statval <- ldply(c(-3.5470, 5.9830, .0027, .0029, .045008, 0.06180839, 0.07401715, 819))
+Statval <- ldply(c(.02881, 396.6305, 2.38228, 1.003529, 15.51964, 0.06180839, 0.07401715, 819))
 SumStats <- cbind(SumStats, Statval)
 names(SumStats) <- c("Statistic", "Value")
-kable(SumStats, digits = 8, booktabs = T, caption = "Summary Statistics for Bitcoin Returns")
+SS.kable <- kable(SumStats, digits = 5, booktabs = T, caption = "Summary Statistics for Bitcoin Returns")
+kable_styling(SS.kable, latex_options = "hold_position")
 ```
 
 #Results 
 
-The coefficient of relative risk aversion and the subjective discount factor are among
-the most important parameters in a risky intertemporal environment. We assume the agent has a subjective discount value of $\beta = .85$ and a risk aversion parameter $\gamma = 2$. The employment of the Tauchen Algorithm provides discretized aggregate shock states accompanied by a transition probability matrix for each state. We allow a total number of 60 exogenous varying shocks to occur with a maximum loss of 99.68% and a maximum gain of 34,099.82%. We adjust the persistence, $\rho$, the mean, $\mu$, and the variance of the error terms, $\sigma_e$, of the algorithm and simulate the returns of Bitcoin over 819 periods. However, the model fails to accurately simulate returns with summary statistics equal to those observed in the data. 
+###The Tauchen Algorithm and The Bootstrap Model
 
-**Discuss calibration- *Why might we not be able to replicate the data with this algorithm?**
+We approach the simulation of Bitcoin returns in two ways: The Tauchen Algorithm and The Bootstrap Method. The employment of the Tauchen Algorithm provides discretized aggregate shock states accompanied by a transition probability matrix for each state. We allow a total number of 60 exogenous varying shocks to occur with a maximum loss of **Insert %** and a maximum gain of **Insert %**. The coefficient of relative risk aversion and the subjective discount factor are among the most important parameters in a risky intertemporal environment. We assume the agent has a subjective discount value of $\beta = .85$ and a risk aversion parameter $\gamma = 2$. To examine the shock process of Bitcoin, we adjust the persistence, $\rho$, the mean, $\mu$, and the variance of the error terms, $\sigma_e$, of the algorithm and simulate the returns of Bitcoin over 819 periods. This model **fails** to accurately simulate returns with summary statistics equal to those observed in the data. **What the parameters are set to and how many simulations**
 
-**Talk about the mechanism we created and its accuracy**
+The Bootstrap Method defines $X_1, X_2, ..., X_n$ as independent, indentically distributed random variables with the distribution function $F$. Suppose that $R(X,F)$ is a random variable of both the observed returns Bitcoin and the distribution $F$. The Bootstrap method, established by @Efron, estimates the sampling distribution of $R(X, F)$ on the basis of observed returns. We employ the Monte Carlo approximation of the bootstrap distribution. In turn, repeated realizations of returns, $X^{*^i}$, are generated by taking random samples of size $n$ from $\hat{F}_n$. Furthermore, the histogram of corresponding values $F(X^{*^i}, \hat{F}_n)$ are taken as an approximation of the actual bootstrap distribution @Cheng. To utilize the Bootstrap Method, we adjust collected returns of Bitcoin and discretize the data with 102 equally spaced bins. Thereafter, we fit the bootstrap method with 1,000 boots. The results of our simulations closely align with the observed data. To assess the fit of each model, we include 100 replicates of the Tauchen Algorith and the Bootstrap Model. Subsequently, we average the summary statistics of each model and compare them to the summary statistics of the observed data.   
+
+**Insert actual data**
+
+```{r, echo=FALSE, message=FALSE, warning=FALSE, results = "asis"}
+SumStats1 <- ldply(c("Minimum", "Maximum", "Mean", "Median", "Standard Deviation", "AR 1 Correlation Coefficient", "AR 3 Correlation Coefficient", "Number of Observations"))
+StatvalTauchen <- ldply(c(.02881, 396.6305, 2.38228, 1.003529, 15.51964, 0.06180839, 0.07401715, 819))
+StatvalBootstrap <- ldply(c(.02881, 396.6305, 2.38228, 1.003529, 15.51964, 0.06180839, 0.07401715, 819))
+SumStats1 <- cbind(SumStats1, StatvalTauchen, StatvalBootstrap)
+names(SumStats1) <- c("Statistic", "Tauchen Algorithm Value", "Bootstrap Algorithm Method")
+SS.kable1 <- kable(SumStats1, digits = 5, booktabs = T, caption = "Summary Statistics for Simulated Bitcoin Returns")
+kable_styling(SS.kable1, latex_options = "hold_position")
+```
+
+###The Decision Rule
+
+The amount of Bitcoin and the number of Treasury Bills the agent decides to hold depends on his risk aversion. As the risk aversion parameter, $\gamma$, increases, he chooses to hold fewer amounts of Bitcoin and more Treasury bonds. 
+
+```{r, echo=FALSE, message=FALSE, warning=FALSE, results = "asis"}
+Holdings <- ldply(c("Bitcoin", "Treasury Bond"))
+
+LowGamma <- ldply(c(10, 5))
+NeutralGamma <- ldply(c(0, 0))
+HighGamma <- ldply(c(5, 10))
+Risk <- cbind(Holdings, LowGamma, NeutralGamma, HighGamma)
+names(Risk) <- c("Asset", "Gamma = .5", "Gamma = 2", "Gamma = 3.5")
+Risk1 <- kable(Risk, digits = 5, booktabs = T, caption = "Effects of Risk Aversion on Asset Investments")
+kable_styling(Risk1, latex_options = "hold_position")
+```
+
 
 #Discussion and Conclusion
 
