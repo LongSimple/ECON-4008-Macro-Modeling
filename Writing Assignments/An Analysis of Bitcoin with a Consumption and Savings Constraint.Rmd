@@ -130,7 +130,7 @@ the most important parameters in a risky intertemporal environment. We assume th
 
 **Discuss calibration- *Why might we not be able to replicate the data with this algorithm?**
 
-**Talk about the mechanism we created**
+**Talk about the mechanism we created and its accuracy**
 
 #Discussion and Conclusion
 
