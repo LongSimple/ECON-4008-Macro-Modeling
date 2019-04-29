@@ -5,7 +5,7 @@ clear; close all; clc;
 beta= .95;
 rho = .008; %Keep for now as is and adjust later
 sigma_e = 1.9; %Adjust this
-znum = 20; 
+znum = 60; 
 mu = -.9; %Adjust this
 s = 2.575;
 gamma = 2;  

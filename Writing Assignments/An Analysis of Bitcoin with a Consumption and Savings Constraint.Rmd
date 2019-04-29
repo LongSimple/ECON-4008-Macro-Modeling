@@ -12,11 +12,15 @@ output:
   word_document: default
 bibliography: MacroSources.bib
 abstract: |-
-  Traditionally, studies that replicate the equity premium puzzle with a Lucas Asset Pricing Model examine the excess returns of a risky security or index relative to those of risk-free assets or treasury bonds. Until 2016, cryptocurrencies were largely unacknowledged by academics. Although the volatile behavior of cryptocurrency is now at the forefront of many financial economic works, the risk premia necessary to hold cryptocurrencies are scantly studied.This empirical work seeks to analyze the shock process   of Bitcoin as wellas the shock process of relatively risk-free U.S. Treasury Bills (i.e. to answer of a relatively risk-free U.S. Treasury Bill?). *Insert preface and preliminary results*   \par
+  Traditionally, studies that replicate the equity premium puzzle with a Lucas Asset Pricing Model examine the excess returns of a risky security or index relative to those of risk-free assets or treasury bonds. Until 2016, cryptocurrencies were largely unacknowledged by academics. Although the volatile behavior of cryptocurrency is now at the forefront of many financial economic works, the risk premia necessary to hold cryptocurrencies are scantly studied.This empirical work seeks to analyze the shock process   of Bitcoin as wellas the shock process of relatively risk-free U.S. Treasury Bills (i.e. to answer of a relatively risk-free U.S. Treasury Bill?). **Insert preface and preliminary results**   \par
   \textbf{Keywords:} Cryptocurrency, Equity Premium, Finance
+  
+fontsize: 11pt
 ---
 
 \pagebreak 
+
+**Fix the abstract**
 
 ```{r, message=FALSE, warning=FALSE, include=FALSE}
 ####   Clear memory and load needed packages
@@ -26,6 +30,13 @@ library(plyr)
 library(knitr)
 library(readr)
 library(kableExtra)
+library(rmgarch)
+library(rugarch)
+library(astsa)
+library(kableExtra)
+library(mgarchBEKK)
+library(xts)
+setwd("~/Documents/GitHub/ECON-4008-Macro-Modeling/Writing Assignments")
 ```
 
 #Introduction 
@@ -36,7 +47,7 @@ Unlike standard fiat money, Bitcoin is not within the domain of central governme
 
 This empirical work seeks to analyze the shock process of Bitcoin as well as the shock process of relatively risk-free U.S. Treasury Bills (i.e. to answer the following question: What is the shock process of Bitcoin and the shock process of a relatively risk-free U.S. Treasury Bill?). Furthermore, this study seeks to examine the risk aversion parameter necessary to generate the level of equity return observed in the historical price data of Bitcoin and U.S. Treasury Bills (i.e. to answer the following question: What is the risk aversion parameter necessary to generate the level of equity return observed in historical price data of Bitcoin and U.S. Treasury Bills?). Traditionally, studies that replicate the equity premium puzzle with a Lucas Asset Pricing Model examine the excess returns of a risky security or index relative to those of risk-free assets or treasury bonds. Until 2016, cryptocurrencies were largely unacknowledged by academics. Although the volatile behavior of cryptocurrency is now at the forefront of many financial economic works, the risk premia necessary to hold cryptocurrencies are scantly studied. 
 
-*Introduce key findings/economic implications and relate back to literature review*
+**Introduce key findings/economic implications and relate back to literature review**
 
 #Literature Review 
 
@@ -54,9 +65,9 @@ Although cryptocurrencies may serve as useful portfolio diversifiers their retur
 
 #Model Environment and Financial Model
 
-To examine the shock process of Bitcoin, we employ a method of successive approximations with discrete state-space dynamic programming. During each discrete time period, the agent maximizes llifetime utility by choosing a level of consumption along with a number of bonds and an amount of Bitcoin to hold. *Include optimum growth and time frame- include what each period means (daily)- note that the agent is an individual person*
+To examine the shock process of Bitcoin, we employ a method of successive approximations with discrete state-space dynamic programming. During each discrete time period, the agent maximizes llifetime utility by choosing a level of consumption along with a number of bonds and an amount of Bitcoin to hold. **Include optimum growth and time frame- include what each period means (daily)- note that the agent is an individual person**
 
-*Make sure each variable is clearly defined and all processes are in functional form*
+**Make sure each variable is clearly defined and all processes are in functional form**
 
 There are two financial assets in which the representative agent can invest: a risk-free Treasury Bill, $TB_t$, and cryptocurrency, $BC_t$. By saving with the asset $TB_t$, the agent subsequently earns a fixed risk-free rate of return, $R_{TB}$. 
 
@@ -70,13 +81,43 @@ $$V (TB, BC) = max_{TB',BC'} \{\frac{c^{1-\gamma}}{1 - \gamma} + E(\beta V(TB', 
 subject to
 
 $$C + TB' + BC' = R_{TB}TB + R_{BC}BC$$
-#Data Description
+
+#Data Description 
 
 We assume the risk-free rate of return is five percent based on historical data collected from the U.S. Department of the Treasury. The Bitcoin price data that we include was freely gathered from the Federal Reserve Bank of St. Louis. We use the daily closing prices of Bitcoin from January 1, 2017 to March 29, 2019. The returns of cryptocurrency, $R_{BC}$, are calculated at time $t$ by $$R_{t} = ln(\frac{P_t}{P_{t-1}})$$ with \(P_t\) equal to the price of the Bitcoin price on day \(t\) and normalized. 
 
-```{r, echo= FALSE}
-SumStats <- ldply(c("Minimum", "Maximum", "Mean", "Median", "Standard Deviation", "AR 1 Correlation Coefficient", "Number of Observations"))
-Statval <- ldply(c(-3.5470, 5.9830, .0027, .0029, .045008, -.0150045, 819))
+We included two lags in the autoregressive model based on the results of the autocorrelation function (ACF) and partial autocorrelation function (PACF). The ACF describes the autocorrelation between each observation and an observation one period before that. In contrast, the PACF describes the direct relationship between an observation and its lag. The partial autocorrelation functions suggest that there exists a significant correlation for one lag and three lags. Hence, the autoregressive regression include the prior period’s reported returns as well as three prior period's returns as independent variables and assumes the form $$R_t = \alpha + \beta_1 R_{t-1} + \beta_2 R_{t - 3} + \epsilon$$  
+
+```{r, include=FALSE, message=FALSE, warning=FALSE, paged.print=FALSE}
+#Import the Data
+Rho <- read_csv("Rho.csv")
+Data <- as.data.frame(Rho)
+
+#Look at the ACF/PACF Functions to identify the significant number of lags- The ACF and PACF plots will be included in the 
+acf2(abs(Data$Returns), max.lag = 8)
+
+```
+
+```{r, include = FALSE}
+#Based on the returns we should use an AR model of 1 
+
+#Add a column of lags 
+Data <- Data %>% 
+  mutate(LagReturns = lag(Returns)) %>%
+  mutate(LagReturns2 = lag(LagReturns)) %>%
+  mutate(LagReturns3 = lag(LagReturns2))
+
+#Run a simple linear regression 
+
+Regression <- lm(Returns ~ LagReturns + LagReturns3, Data)
+Coefficients <- Regression$coefficients
+```
+
+During the examined period, the returns of Bitcoin ranged from -354.7% to 598.3%, and the mean return during this holding period was .27%. With 90% confidence, we conclude that the correlation coefficients of the autoregressive regression are statistically significant. 
+
+```{r, echo=FALSE, message=FALSE, warning=FALSE, paged.print=FALSE}
+SumStats <- ldply(c("Minimum", "Maximum", "Mean", "Median", "Standard Deviation", "AR 1 Correlation Coefficient", "AR 3 Correlation Coefficient", "Number of Observations"))
+Statval <- ldply(c(-3.5470, 5.9830, .0027, .0029, .045008, 0.06180839, 0.07401715, 819))
 SumStats <- cbind(SumStats, Statval)
 names(SumStats) <- c("Statistic", "Value")
 kable(SumStats, digits = 8, booktabs = T, caption = "Summary Statistics for Bitcoin Returns")
@@ -84,28 +125,19 @@ kable(SumStats, digits = 8, booktabs = T, caption = "Summary Statistics for Bitc
 
 #Results 
 
-##Assumptions 
-We assume the agent has a subjective discount value of $.85$ and a risk aversion parameter equal to two. 
+The coefficient of relative risk aversion and the subjective discount factor are among
+the most important parameters in a risky intertemporal environment. We assume the agent has a subjective discount value of $\beta = .85$ and a risk aversion parameter $\gamma = 2$. The employment of the Tauchen Algorithm provides discretized aggregate shock states accompanied by a transition probability matrix for each state. We allow a total number of 60 exogenous varying shocks to occur with a maximum loss of 99.68% and a maximum gain of 34,099.82%. We adjust the persistence, $\rho$, the mean, $\mu$, and the variance of the error terms, $\sigma_e$, of the algorithm and simulate the returns of Bitcoin over 819 periods. However, the model fails to accurately simulate returns with summary statistics equal to those observed in the data. 
 
-##Number of stock states Tauchen Algorithm
+**Discuss calibration- *Why might we not be able to replicate the data with this algorithm?**
 
-##Parameters Changed and Meanings
-After adjusting $\rho$, $\mu$, and $\sigma_e$, the persistence of shock, mean, and variance of *something*, model fails to accurately simulate stock returns with summary statistics equal to those observed in the data. 
-
-###Effects of changing parameterers ceteris paribus
-
-*Discuss calibration- find the parameter values; what parameter values of mu, sigma, and rho in the simulation make it so there is a match with the actual data's standard deviation, mean, AR 1 correlation coefficient (can't replicate)?*
-
-*Include a table with the variable, value, and description for columns*
+**Talk about the mechanism we created**
 
 #Discussion and Conclusion
 
-*Why might we not be able to replicate the data?*
-
-*Summarize contribution and work*
+**Summarize contribution and work**
 
 
-
+**Fix References**
 $\pagebreak$
 
 References {#references .unnumbered}
