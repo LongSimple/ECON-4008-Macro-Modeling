@@ -83,7 +83,13 @@ end
     
 end
 
-%save btcchoice_model.mat
+save btcchoice_model.mat
+
+%Simulation
+simulation_runs = 1;%Run Simulation x times
+
+
+for runs = 1:simulation_runs
 
 %Variables for Random Draw
 sample_size=819 %sample size (time periods)
@@ -123,19 +129,25 @@ for q = 1:length(stockstates_sample_path)
     stock_sim_returns(q)=s_sim_value(q)*stockstates_sample_path(q);
 end
 
-n=200;%truncate this
-stock_sim_returnstest=transpose(stock_sim_returns);
-stock_sim_returnstest=stock_sim_returnstest(n+1:end,:);
-% stock_sim_returnstestlag = stock_sim_returnstest(2:end,:); 
+stockstates_sample_pathlag = stockstates_sample_path(2:end,:); 
+stock_sim_returnslag = stock_sim_returns(2:end,:); 
 
 
-all_time_returns=sum(stock_sim_returnstest);
+average_returns(runs) = mean(stockstates_sample_path);
+average_returns_drule(runs) = mean(stock_sim_returns);
+stdev_returns(runs) = std(stockstates_sample_path);
+stdev_returns_drule(runs) = std(stock_sim_returns);
+lagcorr(runs) = stockstates_sample_path(1:end - 1, :)\stockstates_sample_pathlag; 
+lagcorr_drule(runs) = stock_sim_returns(1:end - 1, :)\stock_sim_returnslag;
 
-% average_returns = mean(stock_sim_returnstest); 
-% stdev_returns = std(stock_sim_returnstest); 
-% lagcorr = stock_sim_returnstest(1:end - 1, :)\stock_sim_returnstestlag; 
-% 
-% 
-% disp(average_returns) %We want this to equal 0.025441798
-% disp(stdev_returns) %We want this to equal 0.083099504
-% disp(lagcorr) %We want this to equal -0.01500449
+end
+
+average_returns = mean(average_returns);
+average_returns_drule = mean(average_returns_drule);
+
+stdev_returns = mean(stdev_returns);
+stdev_returns_drule = mean(stdev_returns_drule);
+
+lagcorr = mean(lagcorr);
+lagcorr_drule = mean(lagcorr_drule);
+
