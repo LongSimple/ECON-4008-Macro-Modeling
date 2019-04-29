@@ -10,7 +10,9 @@ author: |
 output:
   pdf_document: default
   word_document: default
+  
 bibliography: MacroSources.bib
+
 abstract: |-
   Traditionally, studies that replicate the equity premium puzzle with a Lucas Asset Pricing Model examine the excess returns of a risky security or index relative to those of risk-free assets or treasury bonds. Until 2016, cryptocurrencies were largely unacknowledged by academics. Although the volatile behavior of cryptocurrency is now at the forefront of many financial economic works, the risk premia necessary to hold cryptocurrencies are scantly studied.This empirical work seeks to analyze the shock process   of Bitcoin as wellas the shock process of relatively risk-free U.S. Treasury Bills (i.e. to answer of a relatively risk-free U.S. Treasury Bill?). **Insert preface and preliminary results**   \par
   \textbf{Keywords:} Cryptocurrency, Equity Premium, Finance
@@ -115,7 +117,7 @@ Coefficients <- Regression$coefficients
 
 During the examined period, the returns of Bitcoin ranged from -354.7% to 598.3%, and the mean return during this holding period was .27%. With 90% confidence, we conclude that the correlation coefficients of the autoregressive regression are statistically significant. 
 
-```{r, echo=FALSE, message=FALSE, warning=FALSE, paged.print=FALSE}
+```{r, echo=FALSE, message=FALSE, warning=FALSE, results = "asis"}
 SumStats <- ldply(c("Minimum", "Maximum", "Mean", "Median", "Standard Deviation", "AR 1 Correlation Coefficient", "AR 3 Correlation Coefficient", "Number of Observations"))
 Statval <- ldply(c(-3.5470, 5.9830, .0027, .0029, .045008, 0.06180839, 0.07401715, 819))
 SumStats <- cbind(SumStats, Statval)
