@@ -11,7 +11,7 @@ gamma=2;
 importmarkovdata;
 importmarkovstates;
 znum=length(stockstates);utility=@(x)(x.^(1-gamma)-1)/(1-gamma);
-rb=1.04;
+rb=1.0225;
 accuracy=10;
 maxholdings=1;
 stockstates=exp(stockstates);
@@ -84,7 +84,7 @@ end
 save btcchoice_model.mat
 
 sample_size = 1019; %sample size (time periods) take off 200 at end
-[stockstates_sample_path_index, index] = deal(3); % starting state(index) for CDF Random Draw
+[stockstates_sample_path_index, index] = deal(41); % starting state(index) for CDF Random Draw
 stockstates_sample_path = stockstates(index);
 
 %Make Probability Distribution
@@ -124,5 +124,16 @@ end
 n=200;%truncate this
 stock_sim_returnstest=transpose(stock_sim_returns);
 stock_sim_returnstest=stock_sim_returnstest(n+1:end,:);
+% stock_sim_returnstestlag = stock_sim_returnstest(2:end,:); 
+
 
 all_time_returns=sum(stock_sim_returnstest);
+
+% average_returns = mean(stock_sim_returnstest); 
+% stdev_returns = std(stock_sim_returnstest); 
+% lagcorr = stock_sim_returnstest(1:end - 1, :)\stock_sim_returnstestlag; 
+% 
+% 
+% disp(average_returns) %We want this to equal 0.025441798
+% disp(stdev_returns) %We want this to equal 0.083099504
+% disp(lagcorr) %We want this to equal -0.01500449

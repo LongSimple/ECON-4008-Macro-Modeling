@@ -18,7 +18,7 @@ bitcoin_price_data$`Adjusted Returns` <- data_dicretized$X
 
 sequence <- bitcoin_price_data$`Adjusted Returns`
 
-testchain<-markovchainFit(data=sequence, method = "bootstrap", byrow = TRUE, nboot = 10,laplacian=0,"markovchianboi")
+testchain<-markovchainFit(data=sequence, method = "bootstrap", byrow = TRUE, nboot = 5000,laplacian=0,"markovchianboi")
 
-write.xlsx(testchain[["estimate"]]@transitionMatrix, "Classes/MacroModeling/Working/Project/Code/Project/Data/markovchain.xlsx")
+write.xlsx(testchain[["estimate"]]@transitionMatrix, "Classes/MacroModeling/Working/Project/Code/Project/Data/markovchaintest.xlsx")
 
