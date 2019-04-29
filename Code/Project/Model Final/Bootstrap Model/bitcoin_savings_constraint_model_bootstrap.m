@@ -1,31 +1,35 @@
-%Working Model (Including Simulation Code)
+%Bitcoin Treasury Bill Tradeoff Model using a Bootstrap Markov Chain(Including Simulation Code)
 clear; close all; clc; 
-%We will adjust rho, sigma, and mu to match the mean (.002738743), standard deviation (.045007658),
-%and AR 1 correlation coefficient (-.01500449) in the observed returns of Bitcoin 
-beta= .95;
-rho = -.999995; %Adjust this
-sigma_e = 0.083099504; %Adjust this
-mu = 0.025441798; %Adjust this
-s = 2.575;
-gamma=2;
+
+%Parameters
+beta= .95; %Depreciation
+gamma=2;%Risk Aversion
+rb=1.0225; %Bond Return
+Y = 1; %An initial endowment 
+
+%Import Markov Chain
 importmarkovdata;
 importmarkovstates;
-znum=length(stockstates);utility=@(x)(x.^(1-gamma)-1)/(1-gamma);
-rb=1.0225;
+stockstates=exp(stockstates);
+znum=length(stockstates);
+
+%Utility Function
+utility=@(x)(x.^(1-gamma)-1)/(1-gamma);
+
+%Init Variables
 accuracy=10;
 maxholdings=1;
-stockstates=exp(stockstates);
-Y = 1; %An initial endowment 
 numberofbonds=linspace(0,maxholdings,accuracy); %bond allocation number
 numberofstocks=numberofbonds; %stock allocation number
-TV = zeros(length(numberofstocks),length(numberofstocks),length(stockstates));
-V = TV;
-G = TV;
+[TV,V,G] = deal(zeros(length(numberofstocks),length(numberofstocks),length(stockstates)));
 bondstates=transpose(rb*ones(length(stockstates),1));%risk-free rate
 
-precision = .0005;
+%Successive Approximation Parameters
+precision = 1;
 distance = 2*precision;
 iteration = 0;
+
+%Successive Approximation Algorithim
 while distance > precision   
 eV = zeros(length(numberofstocks),length(numberofstocks),length(stockstates)); %check this    
     for b = 1:length(numberofbonds)
@@ -52,7 +56,6 @@ for states = 1:length(stockstates)
         end
     end
 end
-% Tv0 = utility(c)+ beta*eV;
 for s = 1:length(numberofstocks)
     for b = 1:length(numberofbonds)
         for bprime = 1:length(numberofbonds)
@@ -62,7 +65,6 @@ for s = 1:length(numberofstocks)
         end
     end 
 end 
-
 for s =1:length(numberofstocks)
     for b =1:length(numberofbonds) 
         for states = 1:length(stockstates)
@@ -83,7 +85,14 @@ end
 
 save btcchoice_model.mat
 
-sample_size = 1019; %sample size (time periods) take off 200 at end
+%Simulation
+simulation_runs = 10;%Run Simulation x times
+
+
+for runs = 1:simulation_runs
+
+%Variables for Random Draw
+sample_size=819; %sample size (time periods)
 [stockstates_sample_path_index, index] = deal(41); % starting state(index) for CDF Random Draw
 stockstates_sample_path = stockstates(index);
 
@@ -104,7 +113,6 @@ end
  
 %Starting with the state variable: s at t = 1- we previously supposed that
 %the first value is 1
-
   s_sim_location(1) = 1; 
   s_sim_value(1) = numberofstocks(s_sim_location(1));
   
@@ -121,19 +129,25 @@ for q = 1:length(stockstates_sample_path)
     stock_sim_returns(q)=s_sim_value(q)*stockstates_sample_path(q);
 end
 
-n=200;%truncate this
-stock_sim_returnstest=transpose(stock_sim_returns);
-stock_sim_returnstest=stock_sim_returnstest(n+1:end,:);
-% stock_sim_returnstestlag = stock_sim_returnstest(2:end,:); 
+stockstates_sample_pathlag = stockstates_sample_path(2:end); 
+stock_sim_returnslag = stock_sim_returns(2:end); 
 
 
-all_time_returns=sum(stock_sim_returnstest);
+average_returns(runs) = mean(stockstates_sample_path);
+average_returns_drule(runs) = mean(stock_sim_returns);
+stdev_returns(runs) = std(stockstates_sample_path);
+stdev_returns_drule(runs) = std(stock_sim_returns);
+lagcorr(runs) = stockstates_sample_path(1:end - 1)/stockstates_sample_pathlag;
+lagcorr_drule(runs) = stock_sim_returns(1:end - 1)/stock_sim_returnslag;
 
-% average_returns = mean(stock_sim_returnstest); 
-% stdev_returns = std(stock_sim_returnstest); 
-% lagcorr = stock_sim_returnstest(1:end - 1, :)\stock_sim_returnstestlag; 
-% 
-% 
-% disp(average_returns) %We want this to equal 0.025441798
-% disp(stdev_returns) %We want this to equal 0.083099504
-% disp(lagcorr) %We want this to equal -0.01500449
+end
+
+average_returns_val = mean(average_returns);
+average_returns_drule_val = mean(average_returns_drule);
+
+stdev_returns_val = mean(stdev_returns);
+stdev_returns_drule_val = mean(stdev_returns_drule);
+
+lagcorr_val = mean(lagcorr);
+lagcorr_drule_val = mean(lagcorr_drule);
+
