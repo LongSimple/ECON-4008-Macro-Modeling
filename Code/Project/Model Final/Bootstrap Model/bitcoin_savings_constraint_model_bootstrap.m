@@ -1,4 +1,4 @@
-%Bitcoin Treasury Bill Tradeoff Model (Including Simulation Code)
+%Bitcoin Treasury Bill Tradeoff Model using a Bootstrap Markov Chain(Including Simulation Code)
 clear; close all; clc; 
 
 %Parameters
