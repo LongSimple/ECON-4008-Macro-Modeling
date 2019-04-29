@@ -25,7 +25,7 @@ numberofstocks=numberofbonds; %stock allocation number
 bondstates=transpose(rb*ones(length(stockstates),1));%risk-free rate
 
 %Successive Approximation Parameters
-precision = .0005;
+precision = 1;
 distance = 2*precision;
 iteration = 0;
 
@@ -86,13 +86,13 @@ end
 save btcchoice_model.mat
 
 %Simulation
-simulation_runs = 1;%Run Simulation x times
+simulation_runs = 10;%Run Simulation x times
 
 
 for runs = 1:simulation_runs
 
 %Variables for Random Draw
-sample_size=819 %sample size (time periods)
+sample_size=819; %sample size (time periods)
 [stockstates_sample_path_index, index] = deal(41); % starting state(index) for CDF Random Draw
 stockstates_sample_path = stockstates(index);
 
@@ -129,25 +129,25 @@ for q = 1:length(stockstates_sample_path)
     stock_sim_returns(q)=s_sim_value(q)*stockstates_sample_path(q);
 end
 
-stockstates_sample_pathlag = stockstates_sample_path(2:end,:); 
-stock_sim_returnslag = stock_sim_returns(2:end,:); 
+stockstates_sample_pathlag = stockstates_sample_path(2:end); 
+stock_sim_returnslag = stock_sim_returns(2:end); 
 
 
 average_returns(runs) = mean(stockstates_sample_path);
 average_returns_drule(runs) = mean(stock_sim_returns);
 stdev_returns(runs) = std(stockstates_sample_path);
 stdev_returns_drule(runs) = std(stock_sim_returns);
-lagcorr(runs) = stockstates_sample_path(1:end - 1, :)\stockstates_sample_pathlag; 
-lagcorr_drule(runs) = stock_sim_returns(1:end - 1, :)\stock_sim_returnslag;
+lagcorr(runs) = stockstates_sample_path(1:end - 1)/stockstates_sample_pathlag;
+lagcorr_drule(runs) = stock_sim_returns(1:end - 1)/stock_sim_returnslag;
 
 end
 
-average_returns = mean(average_returns);
-average_returns_drule = mean(average_returns_drule);
+average_returns_val = mean(average_returns);
+average_returns_drule_val = mean(average_returns_drule);
 
-stdev_returns = mean(stdev_returns);
-stdev_returns_drule = mean(stdev_returns_drule);
+stdev_returns_val = mean(stdev_returns);
+stdev_returns_drule_val = mean(stdev_returns_drule);
 
-lagcorr = mean(lagcorr);
-lagcorr_drule = mean(lagcorr_drule);
+lagcorr_val = mean(lagcorr);
+lagcorr_drule_val = mean(lagcorr_drule);
 
