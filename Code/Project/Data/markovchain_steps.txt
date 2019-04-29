@@ -1,0 +1,10 @@
+Bootstrap Method
+
+1. Find bitcoin daily close price
+2. Calculate percentage return (Current price-previous price)/previous price
+3. Adjust returns (return-mean)/stdev
+4. Exponentiate exp(adjusted returns)
+5. Import to r studio
+6. Discretize with 102 equal width bins
+7. use markovchainfit bootstrap method with 1000 boots
+8. Import generated markovchain into matlab
