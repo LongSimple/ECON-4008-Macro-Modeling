@@ -9,9 +9,9 @@ Y = 1; %An initial endowment
 
 %Create Markov Chain
 rho = .05; %Keep for now as is and adjust later
-sigma_e = 2; %Adjust this
+sigma_e = 5; %Adjust this
 znum = 60; 
-mu = 2; %Adjust this
+mu = 2.7; %Adjust this
 s = 2.575;
 [stockstates, stockstatesmarkov] = tauchen(rho, sigma_e, znum, mu, s);
 stockstates=exp(stockstates);

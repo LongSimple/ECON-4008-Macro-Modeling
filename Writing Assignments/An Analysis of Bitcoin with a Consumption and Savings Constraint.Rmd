@@ -2,11 +2,10 @@
 title: "An Analysis of Bitcoin with a Consumption and Savings Constraint"
 author: | 
   | Jenna Christensen and Kai Jensen
+  | Guanyi Yang, PhD
   | ECON 4008-01: Macro Modeling
   | Department of Economics
   | St. Lawrence University
-  | 23 Romoda Drive 
-  | Canton, New York 13617
 output:
   pdf_document: default
   word_document: default
@@ -117,7 +116,7 @@ SumStats <- ldply(c("Minimum", "Maximum", "Mean", "Median", "Standard Deviation"
 Statval <- ldply(c(.02881, 396.6305, 2.38228, 1.003529, 15.51964, 0.06180839, 0.07401715, 819))
 SumStats <- cbind(SumStats, Statval)
 names(SumStats) <- c("Statistic", "Value")
-SS.kable <- kable(SumStats, digits = 5, booktabs = T, caption = "Summary Statistics for Bitcoin Returns")
+SS.kable <- kable(SumStats, digits = 4, booktabs = T, caption = "Summary Statistics for Bitcoin Returns")
 kable_styling(SS.kable, latex_options = "hold_position")
 ```
 
@@ -132,12 +131,12 @@ The Bootstrap Method defines $X_1, X_2, ..., X_n$ as independent, indentically d
 **Insert actual data**
 
 ```{r, echo=FALSE, message=FALSE, warning=FALSE, results = "asis"}
-SumStats1 <- ldply(c("Minimum", "Maximum", "Mean", "Median", "Standard Deviation", "AR 1 Correlation Coefficient", "AR 3 Correlation Coefficient", "Number of Observations"))
-StatvalTauchen <- ldply(c(.02881, 396.6305, 2.38228, 1.003529, 15.51964, 0.06180839, 0.07401715, 819))
-StatvalBootstrap <- ldply(c(.02881, 396.6305, 2.38228, 1.003529, 15.51964, 0.06180839, 0.07401715, 819))
+SumStats1 <- ldply(c("Minimum", "Maximum", "Mean", "Median", "Standard Deviation", "AR 1 Correlation Coefficient", "Number of Observations"))
+StatvalTauchen <- ldply(c(.0012, 11.0490, 1.1212, .69420, 15.51964, .0021, 819))
+StatvalBootstrap <- ldply(c(.0288, 436.2894, 3.4927, 1.1849, 22.1173, .0329, 819))
 SumStats1 <- cbind(SumStats1, StatvalTauchen, StatvalBootstrap)
 names(SumStats1) <- c("Statistic", "Tauchen Algorithm Value", "Bootstrap Algorithm Method")
-SS.kable1 <- kable(SumStats1, digits = 5, booktabs = T, caption = "Summary Statistics for Simulated Bitcoin Returns")
+SS.kable1 <- kable(SumStats1, digits = 4, booktabs = T, caption = "Summary Statistics for Simulated Bitcoin Returns")
 kable_styling(SS.kable1, latex_options = "hold_position")
 ```
 
@@ -148,15 +147,26 @@ The amount of Bitcoin and the number of Treasury Bills the agent decides to hold
 ```{r, echo=FALSE, message=FALSE, warning=FALSE, results = "asis"}
 Holdings <- ldply(c("Bitcoin", "Treasury Bond"))
 
-LowGamma <- ldply(c(10, 5))
-NeutralGamma <- ldply(c(0, 0))
-HighGamma <- ldply(c(5, 10))
+LowGamma <- ldply(c(.5203, .2868))
+NeutralGamma <- ldply(c(.2356, .3341))
+HighGamma <- ldply(c(.3557, .2672))
 Risk <- cbind(Holdings, LowGamma, NeutralGamma, HighGamma)
-names(Risk) <- c("Asset", "Gamma = .5", "Gamma = 2", "Gamma = 3.5")
-Risk1 <- kable(Risk, digits = 5, booktabs = T, caption = "Effects of Risk Aversion on Asset Investments")
+names(Risk) <- c("Asset", "Gamma = .5", "Gamma = 2", "Gamma = 3")
+Risk1 <- kable(Risk, digits = 4, booktabs = T, caption = "Effects of Risk Aversion on Asset Investments with the Tauchen Algorithm ")
 kable_styling(Risk1, latex_options = "hold_position")
 ```
 
+```{r, echo=FALSE, message=FALSE, warning=FALSE, results = "asis"}
+Holdings <- ldply(c("Bitcoin", "Treasury Bond"))
+
+LowGamma <- ldply(c(.4671, .3355))
+NeutralGamma <- ldply(c(.4578, .2697))
+HighGamma <- ldply(c(.7913, .4544))
+Risk <- cbind(Holdings, LowGamma, NeutralGamma, HighGamma)
+names(Risk) <- c("Asset", "Gamma = .5", "Gamma = 2", "Gamma = 3")
+Risk1 <- kable(Risk, digits = 4, booktabs = T, caption = "Effects of Risk Aversion on Asset Investments with the Bootstrap Method ")
+kable_styling(Risk1, latex_options = "hold_position")
+```
 
 #Discussion and Conclusion
 
