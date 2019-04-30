@@ -3,7 +3,6 @@ title: "An Analysis of Bitcoin with a Consumption and Savings Constraint"
 author: | 
   | Jenna Christensen and Kai Jensen
   | Guanyi Yang, PhD
-  | ECON 4008-01: Macro Modeling
   | Department of Economics
   | St. Lawrence University
 output:
@@ -11,10 +10,10 @@ output:
   word_document: default
 bibliography: MacroSources.bib
 abstract: |-
-  Traditionally, studies that replicate the equity premium puzzle with a Lucas Asset Pricing Model examine the excess returns of a risky security or index relative to those of risk-free assets or treasury bonds. Until 2016, cryptocurrencies were largely unacknowledged by academics. Although the volatile behavior of cryptocurrency is now at the forefront of many financial economic works, our study is the only to examine the risk aversion parameters necessary to hold cryptocurrencies and analyze the consumer's decision to invest in cryptocurrencies over risk-free bonds. Furthermore, this study analyzes the shock process of Bitcoin as well as the shock process of relatively risk-free U.S. Treasury Bills (i.e. to answer of a relatively risk-free U.S. Treasury Bill?).   \par
+  Traditionally, studies that replicate the equity premium puzzle with a Lucas Asset Pricing Model examine the excess returns of a risky security or index relative to those of risk-free assets or treasury bonds. Until 2016, cryptocurrencies were largely unacknowledged by academics. Although the volatile behavior of cryptocurrency is now at the forefront of many financial economic works, our study is the only to examine the shock process of Bitcoin and the shock process of a relatively risk-free U.S. Treasury Bill, risk aversion parameters necessary to hold cryptocurrencies, and the consumer's decision to invest in cryptocurrencies over risk-free bonds. We conclude that the Bootstrap Model possesses an ability to describe the behavior of cryptocurrency that is superior to the ability of the Tauchen Algorithm. Furthermore, we find limited evidence that an increase in the agent's risk aversion parameter results in a decrease in risky investments and an increase in risk-less investments.   \par
   \textbf{Keywords:} Cryptocurrency, Equity Premium, Finance
   
-fontsize: 11pt
+fontsize: 12pt
 ---
 
 \pagebreak 
@@ -44,9 +43,7 @@ Nearly a decade ago, peer to peer payment networks and digital currencies were u
 
 Unlike standard fiat money, Bitcoin is not within the domain of central governments, authorities, or individuals. The supply and demand for most monetary units are driven by macroeconomic variables which include interest rates, inflation, and the actions taken by central authorities. However, significant changes in the price of Bitcoin are attributable to specific factors relating to cryptocurrencies. Since Bitcoin’s supply evolves according to a publicly known algorithm and is fairly inelastic, and the demand side of the market is mainly driven by the expectations of investors who plan on holding the currency and later selling it, Bitcoin has an exceptionally volatile behavior which makes it an extremely risky yet profitable investment. Its market performance includes steep increases and precipitous declines in value further suggesting the market is driven by the expectations of investors and spectators. 
 
-This empirical work seeks to analyze the shock process of Bitcoin as well as the shock process of relatively risk-free U.S. Treasury Bills (i.e. to answer the following question: What is the shock process of Bitcoin and the shock process of a relatively risk-free U.S. Treasury Bill?). Furthermore, this study seeks to examine the risk aversion parameter necessary to generate the level of equity return observed in the historical price data of Bitcoin and U.S. Treasury Bills (i.e. to answer the following question: What is the risk aversion parameter necessary to generate the level of equity return observed in historical price data of Bitcoin and U.S. Treasury Bills?). Traditionally, studies that replicate the equity premium puzzle with a Lucas Asset Pricing Model examine the excess returns of a risky security or index relative to those of risk-free assets or treasury bonds. Until 2016, cryptocurrencies were largely unacknowledged by academics. Although the volatile behavior of cryptocurrency is now at the forefront of many financial economic works, the risk premia necessary to hold cryptocurrencies are scantly studied. 
-
-**Introduce key findings/economic implications and relate back to literature review**
+This empirical work seeks to analyze the shock process of Bitcoin as well as the shock process of relatively risk-free U.S. Treasury Bills (i.e. to answer the following question: What is the shock process of Bitcoin and the shock process of a relatively risk-free U.S. Treasury Bill?). Furthermore, this study seeks to examine the risk aversion parameter necessary to generate the level of equity return observed in the historical price data of Bitcoin and U.S. Treasury Bills (i.e. to answer the following question: What is the risk aversion parameter necessary to generate the level of equity return observed in historical price data of Bitcoin and U.S. Treasury Bills?). Traditionally, studies that replicate the equity premium puzzle with a Lucas Asset Pricing Model examine the excess returns of a risky security or index relative to those of risk-free assets or treasury bonds. Until 2016, cryptocurrencies were largely unacknowledged by academics. Although the volatile behavior of cryptocurrency is now at the forefront of many financial economic works, the risk premia necessary to hold cryptocurrencies are scantly studied. To our knowledge, this study is the only work that examines the shock process of Bitcoin and the shock process of a relatively risk-free U.S. Treasury Bill, risk aversion parameters necessary to hold cryptocurrencies, and the consumer's decision to invest in cryptocurrencies over risk-free bonds. Our results indicate that the Bootstrap Model possesses an ability to describe the behavior of cryptocurrency that is superior to the ability of the Tauchen Algorithm. In contrast to our expectations, we find merely suggestive evidence that an increase in the agent's risk aversion parameter results in a decrease in risky investments and an increase in risk-less investments. 
 
 #Literature Review 
 
@@ -122,13 +119,11 @@ kable_styling(SS.kable, latex_options = "hold_position")
 
 #Results 
 
-###The Tauchen Algorithm and The Bootstrap Model
+##The Tauchen Algorithm and The Bootstrap Model
 
-We approach the simulation of Bitcoin returns in two ways: The Tauchen Algorithm and The Bootstrap Method. The employment of the Tauchen Algorithm provides discretized aggregate shock states accompanied by a transition probability matrix for each state. We allow a total number of 60 exogenous varying shocks to occur with a maximum loss of **Insert %** and a maximum gain of **Insert %**. The coefficient of relative risk aversion and the subjective discount factor are among the most important parameters in a risky intertemporal environment. We assume the agent has a subjective discount value of $\beta = .85$ and a risk aversion parameter $\gamma = 2$. To examine the shock process of Bitcoin, we adjust the persistence, $\rho$, the mean, $\mu$, and the variance of the error terms, $\sigma_e$, of the algorithm and simulate the returns of Bitcoin over 819 periods. This model **fails** to accurately simulate returns with summary statistics equal to those observed in the data. **What the parameters are set to and how many simulations**
+We approach the simulation of Bitcoin returns in two ways: The Tauchen Algorithm and The Bootstrap Method. The employment of the Tauchen Algorithm provides discretized aggregate shock states accompanied by a transition probability matrix for each state. We allow a total number of 60 exogenous varying shocks to occur with a maximum loss of 99.88% and a maximum gain of 1,004.9%. The coefficient of relative risk aversion and the subjective discount factor are among the most important parameters in a risky intertemporal environment. We assume the agent has a subjective discount value of $\beta = .85$ and a risk aversion parameter $\gamma = 2$. To examine the shock process of Bitcoin, we adjust the persistence, $\rho$, the mean, $\mu$, and the variance of the error terms, $\sigma_e$, of the algorithm and simulate the returns of Bitcoin over 819 periods. This model fails to accurately simulate returns with summary statistics equal to those observed in the data. Calibrating the model so that $\mu = -6.5, \rho = -.98,$ and $\sigma_e = .0085$ provides the summary statistics seen below. However, variations of the aforementioned parameters in the model do not provide summary statistics that converge to those observed in the data. Furthermore, averaging the summary statistics of multiple simulations does not result in the convergence of summary statistics.  
 
-The Bootstrap Method defines $X_1, X_2, ..., X_n$ as independent, indentically distributed random variables with the distribution function $F$. Suppose that $R(X,F)$ is a random variable of both the observed returns Bitcoin and the distribution $F$. The Bootstrap method, established by @Efron, estimates the sampling distribution of $R(X, F)$ on the basis of observed returns. We employ the Monte Carlo approximation of the bootstrap distribution. In turn, repeated realizations of returns, $X^{*^i}$, are generated by taking random samples of size $n$ from $\hat{F}_n$. Furthermore, the histogram of corresponding values $F(X^{*^i}, \hat{F}_n)$ are taken as an approximation of the actual bootstrap distribution @Cheng. To utilize the Bootstrap Method, we adjust collected returns of Bitcoin and discretize the data with 102 equally spaced bins. Thereafter, we fit the bootstrap method with 1,000 boots. The results of our simulations closely align with the observed data. To assess the fit of each model, we include 100 replicates of the Tauchen Algorith and the Bootstrap Model. Subsequently, we average the summary statistics of each model and compare them to the summary statistics of the observed data.   
-
-**Insert actual data**
+The Bootstrap Method defines $X_1, X_2, ..., X_n$ as independent, indentically distributed random variables with the distribution function $F$. Suppose that $R(X,F)$ is a random variable of both the observed returns Bitcoin and the distribution $F$. The Bootstrap method estimates the sampling distribution of $R(X, F)$ on the basis of observed returns. We employ the Monte Carlo approximation of the bootstrap distribution. In turn, repeated realizations of returns, $X^{*^i}$, are generated by taking random samples of size $n$ from $\hat{F}_n$. Furthermore, the histogram of corresponding values $F(X^{*^i}, \hat{F}_n)$ are taken as an approximation of the actual bootstrap distribution (Fuh, 1989). To utilize the Bootstrap Method, we adjust collected returns of Bitcoin and discretize the data with 102 equally spaced bins. Thereafter, we fit the bootstrap method with 1,000 boots. The results of our simulations closely align with the observed data. To assess the fit of each model, we include 100 replicates of the Tauchen Algorith and the Bootstrap Model. Subsequently, we average the summary statistics of each model and compare them to the summary statistics of the observed data. Repeated simulations of the Bootstrap Model replicate returns with summary statistics similar to those observed in the data. The results of a single simulation are displayed below. Averaging the summary statistics of multiple simulations of this model results in values that approach those observed in the data. Hence, the Bootstrap Model provides a more accurate representation of the behavior of Bitcoin relative to the Tauchen Algorithm.    
 
 ```{r, echo=FALSE, message=FALSE, warning=FALSE, results = "asis"}
 SumStats1 <- ldply(c("Minimum", "Maximum", "Mean", "Median", "Standard Deviation", "AR 1 Correlation Coefficient", "Number of Observations"))
@@ -140,9 +135,9 @@ SS.kable1 <- kable(SumStats1, digits = 4, booktabs = T, caption = "Summary Stati
 kable_styling(SS.kable1, latex_options = "hold_position")
 ```
 
-###The Decision Rule
+##The Decision Rule
 
-The amount of Bitcoin and the number of Treasury Bills the agent decides to hold depends on his risk aversion. As the risk aversion parameter, $\gamma$, increases, he chooses to hold fewer amounts of Bitcoin and more Treasury bonds. 
+The amount of Bitcoin and the number of Treasury Bills the agent decides to hold depends on his risk aversion parameter. Thus, as the risk aversion parameter, $\gamma$, increases, the agent is expected to hold fewer amounts of Bitcoin and more Treasury bonds. To verify this hypothesis, we run 100 simulations for each of the following three scenarios: $\gamma = .5$, $\gamma = 2$, and $\gamma = 3$. The average holdings of Bitcoin and Treasury Bonds are shown below. 
 
 ```{r, echo=FALSE, message=FALSE, warning=FALSE, results = "asis"}
 Holdings <- ldply(c("Bitcoin", "Treasury Bond"))
@@ -152,7 +147,7 @@ NeutralGamma <- ldply(c(.2356, .3341))
 HighGamma <- ldply(c(.3557, .2672))
 Risk <- cbind(Holdings, LowGamma, NeutralGamma, HighGamma)
 names(Risk) <- c("Asset", "Gamma = .5", "Gamma = 2", "Gamma = 3")
-Risk1 <- kable(Risk, digits = 4, booktabs = T, caption = "Effects of Risk Aversion on Asset Investments with the Tauchen Algorithm ")
+Risk1 <- kable(Risk, digits = 4, booktabs = T, caption = "Effects of Risk Aversion on Asset Allocation with the Tauchen Algorithm ")
 kable_styling(Risk1, latex_options = "hold_position")
 ```
 
@@ -164,17 +159,88 @@ NeutralGamma <- ldply(c(.4578, .2697))
 HighGamma <- ldply(c(.7913, .4544))
 Risk <- cbind(Holdings, LowGamma, NeutralGamma, HighGamma)
 names(Risk) <- c("Asset", "Gamma = .5", "Gamma = 2", "Gamma = 3")
-Risk1 <- kable(Risk, digits = 4, booktabs = T, caption = "Effects of Risk Aversion on Asset Investments with the Bootstrap Method ")
+Risk1 <- kable(Risk, digits = 4, booktabs = T, caption = "Effects of Risk Aversion on Asset Allocation with the Bootstrap Method ")
 kable_styling(Risk1, latex_options = "hold_position")
 ```
+\pagebreak
+
+The results of our simulations do not provide sufficient evidence to conclude that an increase in the risk aversion parameter results in a decrease in an individual's investment in Bitcoin. We observe that increase the risk aversion parameter from $.5$ to $2$ results in a decrease in the amount of Bitcoin held by the investor and co-occurs with an increase in the agent's investment in Bitcoin. This suggests that the individual's choice is not to solely decrease the amount of Bitcoin he holds. Rather, his choice is to minimize losses by diversifying his portfolio. However, in both the Tauchen Algorithm simulations as well as the Bootstrap Method simulations, an increase in the risk aversion parameter from $2$ to $3$, results in an increase in the the agent's investment in Bitcoin. This decision choice starkly contrasts the decision choice observed when the risk aversion parameter increases from $.5$ to $2$. We also find that the the agent's investment in Treasury Bonds vary based on the model employed. Ergo, we can not strictly conclude that an increase in the risk aversion parameter decreases an individual's investment in a risky asset. 
 
 #Discussion and Conclusion
 
-**Summarize contribution and work**
+The results of this study suggest that individuals' investment choices vary based on the risk aversion parameter and exogenous shocks to returns. Although the Tauchen Algorithm and the Bootstrap Model possess the ability to describe the behavior of cryptocurrency, the Bootstrap Model permits relatively more accurate replications. The discrepencies between the returns of each model are attributable to the Bootstrap Model's inclusion of random samples from the observed data. 
+
+It is atypical that an increase in the agent's risk aversion does not result in a decreased investment in risky assets along with an increased investment in risk-less assets. These findings suggest there exists a threshold for investments in risk-free bonds as the risk aversion parameter increases. If the decision rule assumes a concave shape due to an investment threshold, there may be further implications for the agent's investment decisions. Both the Tauchen Algorithm and Bootstrap Model include market shocks that significantly vary throughout each simulation. In turn, the observed decision rule may be determined by the effect exogenous shocks have on an individual's investment decision in addition to adjustments made to the risk aversion parameter. 
 
 
-**Fix References**
 $\pagebreak$
 
-References {#references .unnumbered}
-==========
+#References
+
+Barunik, Jozef, and Thomas Krehlik. 2016. *Measuring the frequency dynamics of financial* 
+
+\smallskip
+
+$\qquad$ *and macroeconomic connectedness*.
+
+
+Corbet, Shaen, Andrew Meegan, Charles Larkin, Brian Lucey, and Larisa Yarovaya. 2018.
+
+\smallskip
+
+$\qquad$"Exploring the Dynamic Relationships between Cryptocurrencies and Other financial
+
+\smallskip
+
+$\qquad$ Assets." *Economics Letters*.
+    
+    
+Francis, Diebold, and Kamil Yilmaz. 2012. "Better to give than to receive: Predictive
+
+\smallskip
+
+$\qquad$ directional measurement of volatility spillovers." *International Journal of* 
+
+\smallskip
+
+$\qquad$*Forecasting* 57-66.
+
+
+Fuh, Cheng-Der. 1989. “The Bootstrap Method for Markov Chains.” Master’s thesis, Iowa 
+
+\smallskip
+
+$\qquad$State University.
+    
+    
+Liu, Yukun, and Aleh Tsyvinski. 2018. "Risks and Returns of Cryptocurrency." *NBER* 
+
+\smallskip
+
+$\qquad$*Working Paper Series*. National Bureau of Economic Research, August.
+
+
+Lucas, Robert E. 1978. "Asset Prices in an Exchange Economy." *Econometrica* 1429-1445.
+
+
+Nada, Sara. 2013. "Equity Premium Puzzle: Not solved yet. ." *International Conference on*
+
+\smallskip
+
+$\qquad$*Economics and Business Administration*. 48-61.
+    
+    
+Prescott, Edward, and Rajnish Mehra. 1985. "The equity premium: A puzzle." *Journal of*
+
+\smallskip
+
+$\qquad$ *Monetary Economics* 145-161.
+    
+    
+Vandezande, Niels. 2017. "Virtual currencies under EU anti-money laundering law."
+
+\smallskip
+
+$\qquad$ *Computer Law & Security Review* 341-353.
+
+
