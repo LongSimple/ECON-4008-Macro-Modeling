@@ -11,6 +11,7 @@ output:
 bibliography: MacroSources.bib
 abstract: |-
   Traditionally, studies that replicate the equity premium puzzle with a Lucas Asset Pricing Model examine the excess returns of a risky security or index relative to those of risk-free assets or treasury bonds. Until 2016, cryptocurrencies were largely unacknowledged by academics. Although the volatile behavior of cryptocurrency is now at the forefront of many financial economic works, our study is the only to examine the shock process of Bitcoin and the shock process of a relatively risk-free U.S. Treasury Bill, risk aversion parameters necessary to hold cryptocurrencies, and the consumer's decision to invest in cryptocurrencies over risk-free bonds. We conclude that the Bootstrap Model possesses an ability to describe the behavior of cryptocurrency that is superior to the ability of the Tauchen Algorithm. Furthermore, we find limited evidence that an increase in the agent's risk aversion parameter results in a decrease in risky investments and an increase in risk-less investments.   \par
+  \textbf{JEL codes:} B26 (Financial Economics), L63 (Microelectronics, Computers, and Communications Equipment)  \par
   \textbf{Keywords:} Cryptocurrency, Equity Premium, Finance
   
 fontsize: 12pt
