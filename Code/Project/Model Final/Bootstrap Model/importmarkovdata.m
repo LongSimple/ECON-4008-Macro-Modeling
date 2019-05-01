@@ -18,7 +18,7 @@ opts.VariableNames = ["VarName2", "VarName3", "VarName4", "VarName5", "VarName6"
 opts.VariableTypes = ["double", "double", "double", "double", "double", "double", "double", "double", "double", "double", "double", "double", "double", "double", "double", "double", "double", "double", "double", "double", "double", "double", "double", "double", "double", "double", "double", "double", "double", "double", "double", "double", "double", "double", "double", "double", "double", "double", "double", "double", "double", "double", "double", "double", "double", "double", "double", "double", "double", "double", "double", "double", "double", "double", "double", "double", "double", "double", "double", "double"];
 
 % Import the data
-stockstatesmarkov = readtable("..\..\data\markovchain.xlsx", opts, "UseExcel", false);
+stockstatesmarkov = readtable("\Users\Jenna\Documents\GitHub\ECON_4008-01-Macro-Modeling\Code\Project\Datamarkovchain.xlsx", opts, "UseExcel", false);
 
 %% Convert to output type
 stockstatesmarkov = table2array(stockstatesmarkov);
