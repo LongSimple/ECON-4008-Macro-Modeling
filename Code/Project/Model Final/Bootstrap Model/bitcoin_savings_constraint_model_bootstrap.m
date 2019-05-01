@@ -3,7 +3,7 @@ clear; close all; clc;
 
 %Parameters
 beta= .95; %Depreciation
-gamma=2;%Risk Aversion
+gamma=.5;%Risk Aversion
 rb=1.0225; %Bond Return
 Y = 1; %An initial endowment 
 
@@ -25,7 +25,7 @@ numberofstocks=numberofbonds; %stock allocation number
 bondstates=transpose(rb*ones(length(stockstates),1));%risk-free rate
 
 %Successive Approximation Parameters
-precision = 1;
+precision = .005;
 distance = 2*precision;
 iteration = 0;
 

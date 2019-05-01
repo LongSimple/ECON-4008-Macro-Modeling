@@ -3,14 +3,14 @@ clear; close all; clc;
 
 %Parameters
 beta= .95; %Depreciation
-gamma=2;%Risk Aversion
+gamma=3;%Risk Aversion
 rb=1.0225; %Bond Return
 Y = 1; %An initial endowment 
 
 %Create Markov Chain
 rho = -.9989; %Keep for now as is and adjust later
 sigma_e = .0009; %Adjust this
-znum = 20; 
+znum = 60; 
 mu = -6.7; %Adjust this
 s = 2.575;
 [stockstates, stockstatesmarkov] = tauchen(rho, sigma_e, znum, mu, s);
@@ -28,7 +28,7 @@ numberofstocks=numberofbonds; %stock allocation number
 bondstates=transpose(rb*ones(length(stockstates),1));%risk-free rate
 
 %Successive Approximation Parameters
-precision = 1;
+precision = .005;
 distance = 2*precision;
 iteration = 0;
 
